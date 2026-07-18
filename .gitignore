@@ -1,0 +1,12 @@
+node_modules/
+out/
+.remotion/
+
+# Recordings are large binaries — keep them out of git. Drop your phone capture
+# in public/demo-raw.mov locally; it is measured and composited at render time.
+public/*.mov
+public/*.mp4
+public/*.MOV
+public/*.MP4
+
+.DS_Store
