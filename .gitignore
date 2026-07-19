@@ -9,4 +9,13 @@ public/*.mp4
 public/*.MOV
 public/*.MP4
 
+# Generated demo-page assets — the MP4 + icon are copied in from a render
+# (see site/README.md). site/index.html is the only source-controlled file.
+site/*.mp4
+site/icon.png
+site/.vercel
+
+# Browser-automation verification artifacts.
+.playwright-mcp/
+
 .DS_Store
