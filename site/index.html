@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Threadbase — Demo</title>
+<meta name="description" content="Threadbase mirrors Claude Code and Codex CLI sessions to your phone in real time. Watch the demo." />
+<meta property="og:title" content="Threadbase — Your terminal. Live. In your pocket." />
+<meta property="og:description" content="Watch the Threadbase demo — Claude Code + Codex CLI, untethered." />
+<meta property="og:type" content="video.other" />
+<meta property="og:video" content="./threadbase-demo.mp4" />
+<meta name="twitter:card" content="player" />
+<link rel="icon" href="./icon.png" />
+<style>
+  :root {
+    --bg-deep: #04070d;
+    --bg: #070b11;
+    --surface: #0b1320;
+    --text: #f4f8ff;
+    --text-dim: #9fb0c9;
+    --text-muted: #607089;
+    --accent: #63b3ff;
+    --accent-strong: #b5e3ff;
+    --live: #f08a24;
+    --live-hover: #ffab52;
+    --blue-glow: rgba(99, 179, 255, 0.45);
+    --amber-glow: rgba(240, 138, 36, 0.5);
+    --grid-line: rgba(255, 255, 255, 0.04);
+    --font-sans: "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "Helvetica Neue", Arial, sans-serif;
+    --font-mono: "JetBrains Mono", "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { height: 100%; margin: 0; }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--text);
+    background:
+      radial-gradient(circle at 18% 12%, rgba(99, 179, 255, 0.16), transparent 34%),
+      radial-gradient(circle at 84% 8%, rgba(240, 138, 36, 0.12), transparent 26%),
+      linear-gradient(180deg, var(--bg-deep) 0%, var(--bg) 30%, var(--bg) 100%);
+    background-attachment: fixed;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    min-height: 100%;
+    position: relative;
+  }
+
+  /* Signature 48px terminal grid. */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+    background-size: 48px 48px;
+    opacity: 0.9;
+  }
+
+  main {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: clamp(32px, 6vw, 72px) 24px 56px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 28px;
+  }
+
+  .lockup {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .lockup svg { width: 60px; height: 60px; display: block; }
+  .lockup .name {
+    font-size: clamp(34px, 6vw, 46px);
+    font-weight: 700;
+    letter-spacing: -1.5px;
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin: 0;
+  }
+
+  h1 {
+    font-size: clamp(30px, 6.5vw, 52px);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.05;
+    margin: 0;
+    text-wrap: balance;
+  }
+  h1 .accent {
+    background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .tagline {
+    font-size: clamp(16px, 2.6vw, 20px);
+    color: var(--text-dim);
+    max-width: 40ch;
+    margin: 0;
+    line-height: 1.4;
+  }
+
+  /* Phone-shaped 9:16 player frame with a soft blue glow. */
+  .player {
+    position: relative;
+    width: min(340px, 80vw);
+    aspect-ratio: 9 / 16;
+    border-radius: 28px;
+    overflow: hidden;
+    border: 1px solid rgba(120, 188, 255, 0.28);
+    box-shadow:
+      0 0 0 1px rgba(120, 188, 255, 0.08),
+      0 0 42px var(--blue-glow),
+      0 30px 80px rgba(3, 8, 18, 0.6);
+    background: var(--surface);
+    margin-top: 4px;
+  }
+  .player video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 34px;
+    border-radius: 14px;
+    background: linear-gradient(180deg, var(--accent-strong), var(--accent));
+    color: var(--bg-deep);
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.2px;
+    text-decoration: none;
+    box-shadow: 0 0 28px var(--blue-glow), 0 12px 34px rgba(0, 0, 0, 0.5);
+    transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1), filter 120ms;
+  }
+  .cta:hover { filter: brightness(1.06); transform: translateY(-1px); }
+
+  /* Amber LIVE pill — the brand's running/now signature. */
+  .live-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 7px 16px 7px 13px;
+    border-radius: 999px;
+    background: rgba(240, 138, 36, 0.14);
+    border: 1px solid rgba(240, 138, 36, 0.4);
+    box-shadow: 0 0 16px var(--amber-glow);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: var(--live-hover);
+  }
+  .live-pill .dot {
+    width: 9px; height: 9px; border-radius: 50%;
+    background: var(--live);
+    box-shadow: 0 0 8px var(--live);
+    animation: pulse 1.6s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.45; box-shadow: 0 0 4px var(--live); }
+    50% { opacity: 1; box-shadow: 0 0 12px var(--live); }
+  }
+
+  footer {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 8px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .live-pill .dot { animation: none; opacity: 0.9; }
+  }
+</style>
+</head>
+<body>
+  <main>
+    <div class="lockup">
+      <!-- Threadbase brand mark: thread spine + blue rows + amber live row. -->
+      <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Threadbase">
+        <defs>
+          <radialGradient id="bgGlow" cx="50%" cy="42%" r="55%">
+            <stop offset="0%" stop-color="#0f1e35" /><stop offset="100%" stop-color="#070b11" />
+          </radialGradient>
+          <linearGradient id="t1" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#63b3ff" stop-opacity="1" /><stop offset="100%" stop-color="#63b3ff" stop-opacity="0.25" />
+          </linearGradient>
+          <linearGradient id="t2" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#63b3ff" stop-opacity="0.75" /><stop offset="100%" stop-color="#63b3ff" stop-opacity="0.15" />
+          </linearGradient>
+          <linearGradient id="t3" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#63b3ff" stop-opacity="0.5" /><stop offset="100%" stop-color="#63b3ff" stop-opacity="0.08" />
+          </linearGradient>
+          <linearGradient id="tb" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#f08a24" stop-opacity="1" /><stop offset="60%" stop-color="#f08a24" stop-opacity="0.5" /><stop offset="100%" stop-color="#f08a24" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        <rect width="512" height="512" rx="96" fill="#070b11" />
+        <rect width="512" height="512" rx="96" fill="url(#bgGlow)" />
+        <rect x="137" y="152" width="3" height="228" rx="1.5" fill="#2a4060" opacity="0.9" />
+        <rect x="138" y="152" width="234" height="22" rx="11" fill="url(#t1)" />
+        <rect x="138" y="200" width="178" height="22" rx="11" fill="url(#t2)" />
+        <rect x="138" y="248" width="206" height="22" rx="11" fill="url(#t3)" />
+        <rect x="138" y="316" width="240" height="16" rx="8" fill="url(#tb)" />
+        <circle cx="138" cy="163" r="5.5" fill="#63b3ff" />
+        <circle cx="138" cy="163" r="9" fill="none" stroke="#63b3ff" stroke-width="1.5" opacity="0.6" />
+        <circle cx="138" cy="211" r="5.5" fill="#63b3ff" opacity="0.7" />
+        <circle cx="138" cy="259" r="5.5" fill="#63b3ff" opacity="0.4" />
+        <circle cx="138" cy="324" r="6.5" fill="#f08a24" />
+        <circle cx="138" cy="324" r="11" fill="none" stroke="#f08a24" stroke-width="1.5" opacity="0.7" />
+        <rect x="1" y="1" width="510" height="510" rx="95" fill="none" stroke="#7497c7" stroke-width="1.5" opacity="0.12" />
+      </svg>
+      <span class="name">Threadbase</span>
+    </div>
+
+    <p class="eyebrow">Claude Code + Codex CLI, untethered</p>
+
+    <h1>Your terminal. <span class="accent">Live.</span> In your pocket.</h1>
+
+    <p class="tagline">Built for developers who don't want to be chained to their desks.</p>
+
+    <div class="live-pill"><span class="dot"></span>LIVE</div>
+
+    <div class="player">
+      <video src="./threadbase-demo.mp4" autoplay muted loop playsinline controls
+        poster="./icon.png"></video>
+    </div>
+
+    <a class="cta" href="https://threadbase.sh">Join the Beta →</a>
+
+    <footer>Not affiliated with Anthropic. Claude Code is a product of Anthropic.</footer>
+  </main>
+</body>
+</html>

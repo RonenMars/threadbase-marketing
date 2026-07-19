@@ -36,7 +36,7 @@ const Crossfade: React.FC<{ durationInFrames: number; children: React.ReactNode 
 const MissingFootage: React.FC = () => (
   <AbsoluteFill
     style={{
-      backgroundColor: brand.surface,
+      backgroundColor: brand.bg,
       justifyContent: 'center',
       alignItems: 'center',
       padding: 80,
@@ -46,7 +46,14 @@ const MissingFootage: React.FC = () => (
     <span style={{ fontSize: 44, fontWeight: 700, color: brand.text }}>
       Drop your recording at
     </span>
-    <span style={{ fontSize: 40, color: brand.accent, marginTop: 16 }}>
+    <span
+      style={{
+        fontFamily: '"JetBrains Mono", "SF Mono", ui-monospace, Menlo, monospace',
+        fontSize: 38,
+        color: brand.accent,
+        marginTop: 16,
+      }}
+    >
       public/demo-raw.mov
     </span>
     <span style={{ fontSize: 30, color: brand.textDim, marginTop: 32 }}>
@@ -71,11 +78,24 @@ export const DemoVideo: React.FC<DemoVideoProps> = ({
         <IntroReveal />
       </Sequence>
 
-      <Sequence from={footageStart} durationInFrames={footageFrames} name="Recording">
-        <Crossfade durationInFrames={footageFrames}>
-          {hasFootage ? <OffthreadVideo src={footageSrc} /> : <MissingFootage />}
-        </Crossfade>
-      </Sequence>
+      {hasFootage ? (
+        // Real recording overlaps the bookends so it dissolves in and out.
+        <Sequence from={footageStart} durationInFrames={footageFrames} name="Recording">
+          <Crossfade durationInFrames={footageFrames}>
+            <OffthreadVideo src={footageSrc} />
+          </Crossfade>
+        </Sequence>
+      ) : (
+        // Placeholder (no capture yet) sits between the bookends without the
+        // overlap, so it never bleeds through the intro/outro cards.
+        <Sequence
+          from={INTRO_FRAMES}
+          durationInFrames={footageFrames - CROSSFADE_FRAMES * 2}
+          name="Recording (placeholder)"
+        >
+          <MissingFootage />
+        </Sequence>
+      )}
 
       <Sequence from={outroStart} durationInFrames={OUTRO_FRAMES} name="Outro">
         <OutroCTA />
