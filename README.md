@@ -10,6 +10,8 @@ approach (Remotion owns the whole timeline) is designed but not built — see
 
 Standalone project — no dependency on the `tb-mobile` app repo.
 
+**Live demo:** <https://tb-demo-one.vercel.app> — the rendered clip on a static page, deployed to Vercel.
+
 ## Setup
 
 ```bash
