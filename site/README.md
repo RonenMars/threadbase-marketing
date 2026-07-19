@@ -21,6 +21,6 @@ cp public/icon.png site/icon.png
 cd site && vercel deploy --prod --scope ronen-mars-projects
 ```
 
-The middle of the clip is a placeholder (~15s) until a phone capture is dropped
-in at `public/demo-raw.mov`; its length is `FALLBACK_FOOTAGE_FRAMES` in
-`src/brand.ts`.
+The middle of the clip is a placeholder until a phone capture is dropped in at
+`public/demo-raw.mov`; `FALLBACK_FOOTAGE_FRAMES` in `src/brand.ts` keeps that
+placeholder short (4s) so the deployed clip stays tight.

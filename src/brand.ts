@@ -61,8 +61,9 @@ export const CROSSFADE_FRAMES = 15;
 
 // Fallback recording length used until the real file is measured at render
 // time by calculateMetadata (see DemoVideo). Only applies when no demo-raw.mov
-// is present — real captures measure their own length. ~15s placeholder.
-export const FALLBACK_FOOTAGE_FRAMES = 450;
+// is present — real captures measure their own length. Kept short (4s) so the
+// bookends-only clip deployed to the demo page stays tight.
+export const FALLBACK_FOOTAGE_FRAMES = 120;
 
 // Motion — restrained/cinematic, borrowed from the landing site.
 // Standard easing for almost everything appearing on screen.
