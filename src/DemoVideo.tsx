@@ -10,11 +10,16 @@ import {
 import { brand, CROSSFADE_FRAMES, INTRO_FRAMES, OUTRO_FRAMES } from './brand';
 import { IntroReveal } from './IntroReveal';
 import { OutroCTA } from './OutroCTA';
+import type { VariantKey } from './gallery/variants';
 
 export type DemoVideoProps = {
   footageSrc: string;
   footageFrames: number;
   hasFootage: boolean;
+  /** Intro style treatment — see src/gallery/variants.ts. */
+  introVariant: VariantKey;
+  /** Outro style treatment — see src/gallery/variants.ts. */
+  outroVariant: VariantKey;
 };
 
 /** Fades in over the first CROSSFADE_FRAMES and out over the last ones. */
@@ -66,6 +71,8 @@ export const DemoVideo: React.FC<DemoVideoProps> = ({
   footageSrc,
   footageFrames,
   hasFootage,
+  introVariant,
+  outroVariant,
 }) => {
   // Bookends overlap the footage by CROSSFADE_FRAMES so intro dissolves into
   // the recording and the recording dissolves into the outro.
@@ -75,7 +82,7 @@ export const DemoVideo: React.FC<DemoVideoProps> = ({
   return (
     <AbsoluteFill style={{ backgroundColor: brand.bg }}>
       <Sequence durationInFrames={INTRO_FRAMES} name="Intro">
-        <IntroReveal />
+        <IntroReveal variant={introVariant} />
       </Sequence>
 
       {hasFootage ? (
@@ -98,7 +105,7 @@ export const DemoVideo: React.FC<DemoVideoProps> = ({
       )}
 
       <Sequence from={outroStart} durationInFrames={OUTRO_FRAMES} name="Outro">
-        <OutroCTA />
+        <OutroCTA variant={outroVariant} />
       </Sequence>
     </AbsoluteFill>
   );
@@ -109,4 +116,7 @@ export const defaultDemoProps: DemoVideoProps = {
   // footageFrames + hasFootage are replaced by calculateMetadata; see Root.tsx
   footageFrames: 0,
   hasFootage: false,
+  // The shipped look: terminal-style intro dissolving into a glitch outro.
+  introVariant: 'terminal',
+  outroVariant: 'glitch',
 };
