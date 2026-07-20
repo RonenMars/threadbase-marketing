@@ -18,9 +18,16 @@ cp out/threadbase-demo.mp4 site/threadbase-demo.mp4
 cp public/icon.png site/icon.png
 
 # 3. Deploy the static dir.
-cd site && vercel deploy --prod --scope ronen-mars-projects
+cd site && vercel deploy --prod --yes --scope ronen-mars-projects
 ```
 
-The middle of the clip is a placeholder (~15s) until a phone capture is dropped
-in at `public/demo-raw.mov`; its length is `FALLBACK_FOOTAGE_FRAMES` in
-`src/brand.ts`.
+The middle of the clip is a placeholder until a phone capture is dropped in at
+`public/demo-raw.mov`; `FALLBACK_FOOTAGE_FRAMES` in `src/brand.ts` keeps that
+placeholder short (4s) so the deployed clip stays tight.
+
+## Bookend style
+
+The deployed clip uses the shipped treatment — a terminal-style intro dissolving
+into a glitch outro (`introVariant` / `outroVariant` in `src/DemoVideo.tsx`).
+Alternative treatments live in `src/gallery/`; preview them in Studio as the
+`Gallery-*` compositions before changing what ships here.
