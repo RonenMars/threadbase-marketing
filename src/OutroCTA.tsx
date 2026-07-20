@@ -9,6 +9,8 @@ import {
 import { brand } from './brand';
 import { BrandBackground } from './components/BrandBackground';
 import { ThreadbaseMark } from './components/ThreadbaseMark';
+import { GlitchText, MetaTicks, Scanlines, TechFrame } from './gallery/TechEffects';
+import { VARIANTS, type VariantKey } from './gallery/variants';
 
 const FONT_SANS =
   '"SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif';
@@ -19,10 +21,13 @@ const FONT_MONO =
  * End card: mark + wordmark lockup, a pulsing LIVE status pill (the brand's
  * running/now signature), the CTA button (blue navigate fill), and the
  * standing attribution. Sits on the same grid + glow-orb canvas as the intro.
+ *
+ * `variant` selects the treatment — see src/gallery/variants.ts.
  */
-export const OutroCTA: React.FC = () => {
+export const OutroCTA: React.FC<{ variant?: VariantKey }> = ({ variant = 'terminal' }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
+  const v = VARIANTS[variant];
 
   const enter = spring({ frame, fps, config: { damping: 16, stiffness: 90 } });
 
@@ -31,7 +36,7 @@ export const OutroCTA: React.FC = () => {
   const pulse = 0.55 + 0.45 * (0.5 + 0.5 * Math.sin((frame / fps) * Math.PI * 1.4));
 
   const ctaIn = spring({ frame: frame - 22, fps, config: { damping: 16, stiffness: 100 } });
-  const ctaY = interpolate(ctaIn, [0, 1], [26, 0]);
+  const ctaY = interpolate(ctaIn, [0, 1], [v.hardCuts ? 14 : 26, 0]);
 
   const disclaimerOpacity = interpolate(frame, [40, 58], [0, 0.7], {
     extrapolateLeft: 'clamp',
@@ -42,28 +47,43 @@ export const OutroCTA: React.FC = () => {
     <AbsoluteFill style={{ fontFamily: FONT_SANS }}>
       <BrandBackground />
 
+      {v.techFrame ? <TechFrame startFrame={2} /> : null}
+      {v.metaTicks ? (
+        <MetaTicks startFrame={8} items={['1080×1920', '30 FPS', 'THREADBASE', 'LIVE ●']} />
+      ) : null}
+
       <AbsoluteFill
         style={{
           justifyContent: 'center',
           alignItems: 'center',
-          gap: 52,
+          gap: 48,
           paddingLeft: 100,
           paddingRight: 100,
         }}
       >
         {/* Mark + wordmark lockup. */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 28, opacity: enter }}>
-          <ThreadbaseMark size={128} startFrame={0} />
-          <span
-            style={{
-              fontSize: 88,
-              fontWeight: 700,
-              color: brand.text,
-              letterSpacing: -2,
-            }}
-          >
-            {brand.name}
-          </span>
+          <ThreadbaseMark size={124} startFrame={0} />
+          {v.glitch ? (
+            <GlitchText
+              text={brand.name}
+              fontSize={88}
+              startFrame={4}
+              tracking={v.wordTracking}
+              fontFamily={FONT_SANS}
+            />
+          ) : (
+            <span
+              style={{
+                fontSize: 88,
+                fontWeight: 700,
+                color: brand.text,
+                letterSpacing: v.wordTracking,
+              }}
+            >
+              {brand.name}
+            </span>
+          )}
         </div>
 
         {/* LIVE status pill — amber, pulsing glow. */}
@@ -76,7 +96,7 @@ export const OutroCTA: React.FC = () => {
             paddingRight: 26,
             paddingTop: 12,
             paddingBottom: 12,
-            borderRadius: 999,
+            borderRadius: v.techFrame ? v.radius : 999,
             backgroundColor: 'rgba(240,138,36,0.14)',
             border: `1px solid rgba(240,138,36,${0.3 + pulse * 0.3})`,
             boxShadow: `0 0 ${18 * pulse}px ${brand.amberGlow}`,
@@ -87,7 +107,7 @@ export const OutroCTA: React.FC = () => {
             style={{
               width: 16,
               height: 16,
-              borderRadius: 8,
+              borderRadius: v.techFrame ? 2 : 8,
               backgroundColor: brand.live,
               boxShadow: `0 0 ${12 * pulse}px ${brand.live}`,
             }}
@@ -113,25 +133,27 @@ export const OutroCTA: React.FC = () => {
             paddingRight: 64,
             paddingTop: 30,
             paddingBottom: 30,
-            borderRadius: 16,
+            borderRadius: v.radius,
             background: `linear-gradient(180deg, ${brand.accentHover}, ${brand.accent})`,
             color: brand.bgDeep,
-            fontSize: 46,
+            fontFamily: v.typeOut ? FONT_MONO : FONT_SANS,
+            fontSize: v.typeOut ? 40 : 46,
             fontWeight: 700,
-            letterSpacing: -0.5,
+            letterSpacing: v.typeOut ? 1 : -0.5,
             boxShadow: `0 0 34px ${brand.blueGlow}, 0 14px 40px rgba(0,0,0,0.5)`,
             opacity: ctaIn,
             transform: `translateY(${ctaY}px)`,
           }}
         >
-          {brand.cta}
+          {v.typeOut ? `> ${brand.cta}` : brand.cta}
         </div>
       </AbsoluteFill>
 
       <div
         style={{
           position: 'absolute',
-          bottom: 72,
+          // Lift clear of the corner metadata ticks when the frame is on.
+          bottom: v.metaTicks ? 96 : 72,
           left: 0,
           right: 0,
           textAlign: 'center',
@@ -143,6 +165,8 @@ export const OutroCTA: React.FC = () => {
       >
         {brand.disclaimer}
       </div>
+
+      {v.scanlines ? <Scanlines opacity={0.45} /> : null}
     </AbsoluteFill>
   );
 };
