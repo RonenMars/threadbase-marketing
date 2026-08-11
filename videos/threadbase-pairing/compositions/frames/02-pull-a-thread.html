@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Frame 2 — Pull a thread (wireframe)</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          font-family: Inter, -apple-system, system-ui, sans-serif;
+          color: #f4f8ff;
+        }
+        #f2-plane {
+          position: absolute;
+          inset: 0;
+          background: #070b11;
+        }
+        #f2-phone {
+          position: absolute;
+          left: 596px;
+          top: 96px;
+          width: 405px;
+          height: 880px;
+          border: 1px solid #111c2d;
+          border-radius: 34px;
+          background: #0b1320;
+          display: grid;
+          place-items: center;
+          text-align: center;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 17px;
+          line-height: 1.6;
+          letter-spacing: 0.08em;
+          color: #9fb0c9;
+          box-sizing: border-box;
+          padding: 0 20px;
+        }
+        #f2-eyebrow {
+          position: absolute;
+          left: 84px;
+          top: 300px;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 22px;
+          font-weight: 500;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #f08a24;
+        }
+        #f2-headline {
+          position: absolute;
+          left: 82px;
+          top: 372px;
+          width: 470px;
+          /* 82px wrapped each sentence onto two lines, pushing the block down
+             into the orange rule at 606px — the rule read as an underline under
+             "Watch it". Layout check does not flag a decorative div, only text. */
+          font-size: 62px;
+          font-weight: 700;
+          line-height: 1.02;
+          letter-spacing: -0.02em;
+        }
+        #f2-rule {
+          position: absolute;
+          left: 84px;
+          top: 570px;
+          width: 220px;
+          height: 1px;
+          background: #f08a24;
+          transform-origin: left center;
+        }
+        /* Official platform marks, resolved via media-use (svgl/simple-icons) —
+           never redrawn. These are the store MARKS, not Apple's "Download on the
+           App Store" / Google's "Get it on Google Play" badge lockups, which are
+           distributed only through their brand-resource pages. Swap in the real
+           lockups here if they are supplied. */
+        /* The left column is 84→556 (the phone starts at 596). Both badges plus
+           the gap must fit inside 472px, or the Play badge slides under the
+           phone — which it did at the first sizing. */
+        .f2-badge {
+          position: absolute;
+          top: 630px;
+          height: 78px;
+          box-sizing: border-box;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          padding: 0 18px;
+          border: 1px solid #111c2d;
+          border-radius: 14px;
+          background: #0b1320;
+        }
+        #f2-badge-ios { left: 84px; width: 206px; }
+        #f2-badge-play { left: 306px; width: 238px; }
+        .f2-badge img {
+          width: 38px;
+          height: 38px;
+          display: block;
+          flex: none;
+        }
+        .f2-badge-txt {
+          display: block;
+          line-height: 1.18;
+        }
+        .f2-badge-sm {
+          display: block;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 12px;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          color: #9fb0c9;
+          white-space: nowrap;
+        }
+        .f2-badge-lg {
+          display: block;
+          font-size: 22px;
+          font-weight: 600;
+          color: #f4f8ff;
+          white-space: nowrap;
+        }
+        #f2-avail {
+          position: absolute;
+          left: 84px;
+          top: 742px;
+          width: 470px;
+          font-size: 27px;
+          color: #9fb0c9;
+        }
+        #f2-beta {
+          font-weight: 700;
+          color: #f08a24;
+        }
+        #f2-url {
+          position: absolute;
+          left: 84px;
+          top: 794px;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 22px;
+          letter-spacing: 0.02em;
+          color: #6b7a91;
+        }
+        .wf-tag {
+          position: absolute;
+          right: 22px;
+          bottom: 16px;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 15px;
+          letter-spacing: 0.1em;
+          color: #6b7a91;
+        }
+      </style>
+
+      <div data-hf-id="hf-qskj" id="root" data-composition-id="02-pull-a-thread" data-width="1080" data-height="1080">
+        <div data-hf-id="hf-x9yc" id="f2-plane"></div>
+        <div data-hf-id="hf-kmb3" id="f2-phone">[ PHONE ]<br data-hf-id="hf-x5px">promo-02-01-welcome<br data-hf-id="hf-rsrt">welcome / onboarding</div>
+        <div data-hf-id="hf-x8tl" id="f2-eyebrow">// ambient coding</div>
+        <div data-hf-id="hf-kzzw" id="f2-headline">Pull a thread.<br data-hf-id="hf-szow">Watch it weave.</div>
+        <div data-hf-id="hf-utu4" id="f2-rule"></div>
+        <div data-hf-id="hf-zcq6" class="f2-badge" id="f2-badge-ios">
+          <img data-hf-id="hf-hvqm" id="f2-img-ios" src="assets/appstore-mark.svg" alt="App Store">
+          <span data-hf-id="hf-z6nw" class="f2-badge-txt">
+            <span data-hf-id="hf-04ha" class="f2-badge-sm">Download on the</span>
+            <span data-hf-id="hf-c7f3" class="f2-badge-lg">App Store</span>
+          </span>
+        </div>
+        <div data-hf-id="hf-8sjx" class="f2-badge" id="f2-badge-play">
+          <img data-hf-id="hf-yvkn" id="f2-img-play" src="assets/googleplay-mark.svg" alt="Google Play">
+          <span data-hf-id="hf-te5w" class="f2-badge-txt">
+            <span data-hf-id="hf-qtau" class="f2-badge-sm">Get it on</span>
+            <span data-hf-id="hf-tcmq" class="f2-badge-lg">Google Play</span>
+          </span>
+        </div>
+        <div data-hf-id="hf-gxre" id="f2-avail">iOS and Android <span data-hf-id="hf-md8c" id="f2-beta">(BETA)</span></div>
+        <div data-hf-id="hf-dfmx" id="f2-url">threadbase.sh/betas</div>
+        <div data-hf-id="hf-xk9w" class="wf-tag">wireframe · frame 2</div>
+      </div>
+
+      <script>
+        window.__timelines = window.__timelines || {};
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo("#f2-phone", { y: 190, opacity: 0 }, { y: 0, opacity: 1, duration: 0.72, ease: "power3.out" }, 0);
+          tl.fromTo("#f2-eyebrow", { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, 0.34);
+          tl.fromTo("#f2-headline", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0.46);
+          tl.fromTo("#f2-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.inOut" }, 0.9);
+          tl.fromTo(".f2-badge", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.12, ease: "back.out(1.3)" }, 1.15);
+          tl.fromTo("#f2-avail", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 1.6);
+          tl.fromTo("#f2-beta", { scale: 1 }, { scale: 1.12, duration: 0.3, repeat: 1, yoyo: true, ease: "sine.inOut" }, 1.95);
+          tl.fromTo("#f2-url", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 1.85);
+          window.__timelines["02-pull-a-thread"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

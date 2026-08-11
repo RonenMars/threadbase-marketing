@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Frame 5 — Everything, live (wireframe)</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          font-family: Inter, -apple-system, system-ui, sans-serif;
+          color: #f4f8ff;
+        }
+        #f5-plane {
+          position: absolute;
+          inset: 0;
+          background: #070b11;
+        }
+        #f5-phone {
+          position: absolute;
+          left: 596px;
+          top: 96px;
+          width: 405px;
+          height: 880px;
+          border: 1px solid #111c2d;
+          border-radius: 34px;
+          background: #0b1320;
+          display: grid;
+          place-items: center;
+          text-align: center;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 17px;
+          line-height: 1.6;
+          letter-spacing: 0.08em;
+          color: #9fb0c9;
+          box-sizing: border-box;
+          padding: 0 20px;
+        }
+        #f5-live {
+          position: absolute;
+          left: 84px;
+          top: 300px;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 22px;
+          font-weight: 500;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #f08a24;
+        }
+        #f5-headline {
+          position: absolute;
+          left: 82px;
+          top: 352px;
+          width: 470px;
+          /* 78px wrapped "Every session. / In your pocket." to four lines at this
+             width and ran into the session list at 632px — check caught it. */
+          font-size: 64px;
+          font-weight: 700;
+          line-height: 1.02;
+          letter-spacing: -0.02em;
+        }
+        #f5-agents {
+          position: absolute;
+          left: 84px;
+          top: 502px;
+          width: 470px;
+          font-size: 34px;
+          font-weight: 600;
+          letter-spacing: -0.01em;
+          color: #f4f8ff;
+        }
+        #f5-amp {
+          color: #9fb0c9;
+          font-weight: 400;
+        }
+        .f5-prov {
+          color: #f08a24;
+        }
+        .f5-row {
+          position: absolute;
+          left: 84px;
+          width: 448px;
+          height: 1px;
+          background: #111c2d;
+          transform-origin: left center;
+        }
+        #f5-r1 { top: 668px; }
+        #f5-r2 { top: 728px; }
+        #f5-r3 { top: 788px; }
+        .f5-lbl {
+          position: absolute;
+          left: 84px;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 19px;
+          letter-spacing: 0.05em;
+          color: #9fb0c9;
+        }
+        #f5-l1 { top: 632px; }
+        #f5-l2 { top: 692px; }
+        #f5-l3 { top: 752px; }
+        .wf-tag {
+          position: absolute;
+          right: 22px;
+          bottom: 16px;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 15px;
+          letter-spacing: 0.1em;
+          color: #6b7a91;
+        }
+      </style>
+
+      <div data-hf-id="hf-pssk" id="root" data-composition-id="05-everything-live" data-width="1080" data-height="1080">
+        <div data-hf-id="hf-vln3" id="f5-plane"></div>
+        <div data-hf-id="hf-cdzu" id="f5-phone">[ PHONE ]<br data-hf-id="hf-x5px">promo-02-06-hub-populated<br data-hf-id="hf-rsrt">live sessions</div>
+        <div data-hf-id="hf-6ycq" id="f5-live">live · 4</div>
+        <div data-hf-id="hf-wo7q" id="f5-headline">Every session.<br data-hf-id="hf-szow">In your pocket.</div>
+        <div data-hf-id="hf-8ghz" id="f5-agents">Claude Code <span data-hf-id="hf-l2w5" id="f5-amp">and</span> Codex.</div>
+        <div data-hf-id="hf-d9u5" class="f5-lbl" id="f5-l1">running · my-project <span data-hf-id="hf-bv1d" class="f5-prov">claude code</span></div>
+        <div data-hf-id="hf-njxh" class="f5-row" id="f5-r1"></div>
+        <div data-hf-id="hf-31qp" class="f5-lbl" id="f5-l2">waiting · feature/auth <span data-hf-id="hf-v91t" class="f5-prov">codex</span></div>
+        <div data-hf-id="hf-ri1i" class="f5-row" id="f5-r2"></div>
+        <div data-hf-id="hf-jdj9" class="f5-lbl" id="f5-l3">idle · fix/login <span data-hf-id="hf-auid" class="f5-prov">claude code</span></div>
+        <div data-hf-id="hf-vg5j" class="f5-row" id="f5-r3"></div>
+        <div data-hf-id="hf-xykx" class="wf-tag">wireframe · frame 5</div>
+      </div>
+
+      <script>
+        window.__timelines = window.__timelines || {};
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo("#f5-phone", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0);
+          tl.fromTo("#f5-live", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" }, 0.2);
+          tl.fromTo("#f5-headline", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0.32);
+          tl.fromTo("#f5-agents", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.66);
+          tl.fromTo(".f5-lbl", { opacity: 0, x: -14 }, { opacity: 1, x: 0, duration: 0.4, stagger: 0.14, ease: "power2.out" }, 1.0);
+          tl.fromTo(".f5-row", { scaleX: 0 }, { scaleX: 1, duration: 0.45, stagger: 0.14, ease: "power3.inOut" }, 1.08);
+          window.__timelines["05-everything-live"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

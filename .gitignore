@@ -2,6 +2,19 @@ node_modules/
 out/
 .remotion/
 
+# HyperFrames projects under videos/ — everything regenerable stays out.
+# capture/ is re-fetched with `hyperframes capture`, snapshots and renders are
+# rebuilt from the compositions, .thumbnails is Studio scratch.
+# source-screens/ IS committed: those are the real captured app screens the
+# video is built from, and tracking them keeps this repo standalone.
+videos/*/capture/
+videos/*/renders/
+videos/*/snapshots/
+videos/*/.thumbnails/
+videos/*/node_modules/
+videos/*/source-footage/*
+!videos/*/source-footage/.gitkeep
+
 # Recordings are large binaries — keep them out of git. Drop your phone capture
 # in public/demo-raw.mov locally; it is measured and composited at render time.
 public/*.mov

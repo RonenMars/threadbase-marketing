@@ -1,7 +1,16 @@
-# Spec — Full Compositor (deferred)
+# Spec — Full Compositor (superseded)
 
-Status: designed, not implemented.
+Status: **superseded on 2026-08-11 — the goal below is implemented, in HyperFrames rather than Remotion.**
+See `videos/threadbase-pairing/` and the README's "Pairing promo" section.
 Date: 2026-07-19.
+
+Kept for its reasoning and trade-offs, which still hold; read the status claims as history.
+Two things landed differently from what this spec assumed:
+
+- The compositor is HyperFrames (HTML compositions with `data-*` timing), not Remotion, so the "cost" argued below was paid in a different framework.
+- The non-goal "Remotion never drives or records the app" no longer binds: Maestro flows in `tb-mobile` now drive and record the app deterministically ([tb-mobile#635](https://github.com/RonenMars/threadbase-mobile/pull/635)), which is where `source-screens/` comes from.
+
+One assumption survives intact: a real phone is still required for the QR-scan shot, because a simulator cannot feed a camera frame to `expo-camera`.
 
 This documents the "full compositor" approach to the Threadbase demo video.
 The repo currently ships the **Bookends** approach (see `README.md`): Remotion

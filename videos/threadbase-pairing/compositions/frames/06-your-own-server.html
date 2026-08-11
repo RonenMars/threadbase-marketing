@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Frame 6 — Your own server (wireframe)</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          font-family: Inter, -apple-system, system-ui, sans-serif;
+          color: #f4f8ff;
+        }
+        #f6-plane {
+          position: absolute;
+          inset: 0;
+          background: #070b11;
+        }
+        #f6-line1 {
+          position: absolute;
+          left: 84px;
+          top: 372px;
+          width: 912px;
+          font-size: 104px;
+          font-weight: 700;
+          line-height: 0.96;
+          letter-spacing: -0.025em;
+        }
+        #f6-rule {
+          position: absolute;
+          left: 84px;
+          top: 626px;
+          width: 912px;
+          height: 1px;
+          background: #111c2d;
+          transform-origin: left center;
+        }
+        #f6-url {
+          position: absolute;
+          left: 84px;
+          top: 674px;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 46px;
+          font-weight: 600;
+          letter-spacing: 0.01em;
+          color: #f08a24;
+        }
+        #f6-beta {
+          font-weight: 700;
+          color: #f08a24;
+        }
+        #f6-kicker {
+          position: absolute;
+          left: 86px;
+          top: 754px;
+          font-size: 27px;
+          color: #9fb0c9;
+        }
+        .wf-tag {
+          position: absolute;
+          right: 22px;
+          bottom: 16px;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 15px;
+          letter-spacing: 0.1em;
+          color: #6b7a91;
+        }
+      </style>
+
+      <div data-hf-id="hf-w4ph" id="root" data-composition-id="06-your-own-server" data-width="1080" data-height="1080">
+        <div data-hf-id="hf-wrdk" id="f6-plane"></div>
+        <div data-hf-id="hf-yo5p" id="f6-line1">Your own server.<br data-hf-id="hf-x5px">No telemetry.</div>
+        <div data-hf-id="hf-mhrs" id="f6-rule"></div>
+        <div data-hf-id="hf-j4fh" id="f6-url">threadbase.sh/betas</div>
+        <div data-hf-id="hf-jdju" id="f6-kicker">iOS and Android <span data-hf-id="hf-s44o" id="f6-beta">(BETA)</span></div>
+        <div data-hf-id="hf-z5i0" class="wf-tag">wireframe · frame 6</div>
+      </div>
+
+      <script>
+        window.__timelines = window.__timelines || {};
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo("#f6-line1", { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0);
+          tl.fromTo("#f6-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.inOut" }, 0.5);
+          tl.fromTo("#f6-url", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.72);
+          tl.fromTo("#f6-kicker", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 0.95);
+          window.__timelines["06-your-own-server"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

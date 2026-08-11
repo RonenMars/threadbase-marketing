@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Frame 3 — One scan (wireframe)</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          font-family: Inter, -apple-system, system-ui, sans-serif;
+          color: #f4f8ff;
+        }
+        #f3-plane {
+          position: absolute;
+          inset: 0;
+          background: #070b11;
+        }
+        #f3-phone {
+          position: absolute;
+          left: 78px;
+          top: 96px;
+          width: 405px;
+          height: 880px;
+          border: 1px solid #111c2d;
+          border-radius: 34px;
+          background: #0b1320;
+          display: grid;
+          place-items: center;
+          text-align: center;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 17px;
+          line-height: 1.6;
+          letter-spacing: 0.08em;
+          color: #9fb0c9;
+          box-sizing: border-box;
+          padding: 0 20px;
+        }
+        #f3-qr {
+          position: absolute;
+          left: 640px;
+          top: 300px;
+          width: 300px;
+          height: 300px;
+          border: 1px solid #111c2d;
+          border-radius: 10px;
+          background: #0b1320;
+          display: grid;
+          place-items: center;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 18px;
+          letter-spacing: 0.12em;
+          color: #9fb0c9;
+          box-sizing: border-box;
+        }
+        #f3-beam {
+          position: absolute;
+          left: 492px;
+          top: 448px;
+          width: 140px;
+          height: 2px;
+          background: #f08a24;
+          transform-origin: left center;
+        }
+        #f3-headline {
+          position: absolute;
+          left: 640px;
+          top: 664px;
+          width: 380px;
+          font-size: 82px;
+          font-weight: 700;
+          line-height: 0.98;
+          letter-spacing: -0.02em;
+        }
+        #f3-sub {
+          position: absolute;
+          left: 642px;
+          top: 782px;
+          width: 372px;
+          font-size: 27px;
+          line-height: 1.35;
+          color: #9fb0c9;
+        }
+        #f3-note {
+          position: absolute;
+          left: 78px;
+          bottom: 44px;
+          width: 405px;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 14px;
+          line-height: 1.5;
+          letter-spacing: 0.06em;
+          color: #f08a24;
+          text-align: center;
+        }
+        .wf-tag {
+          position: absolute;
+          right: 22px;
+          bottom: 16px;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 15px;
+          letter-spacing: 0.1em;
+          color: #6b7a91;
+        }
+      </style>
+
+      <div data-hf-id="hf-p1h4" id="root" data-composition-id="03-one-scan" data-width="1080" data-height="1080">
+        <div data-hf-id="hf-7w4d" id="f3-plane"></div>
+        <div data-hf-id="hf-z08y" id="f3-phone">[ PHONE ]<br data-hf-id="hf-x5px">promo-02-03-scan-to-pair<br data-hf-id="hf-rsrt">"Scan to pair."</div>
+        <div data-hf-id="hf-hzwm" id="f3-qr">[ QR BLOCK ]</div>
+        <div data-hf-id="hf-zrjs" id="f3-beam"></div>
+        <div data-hf-id="hf-t1xm" id="f3-headline">one scan.</div>
+        <div data-hf-id="hf-25ir" id="f3-sub">No account. No cloud. Your own server.</div>
+        <div data-hf-id="hf-pfsb" id="f3-note">↑ replaced by real iPhone footage</div>
+        <div data-hf-id="hf-x5yv" class="wf-tag">wireframe · frame 3</div>
+      </div>
+
+      <script>
+        window.__timelines = window.__timelines || {};
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo("#f3-phone", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 0);
+          tl.fromTo("#f3-qr", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.45, ease: "power3.out" }, 0.18);
+          tl.fromTo("#f3-beam", { scaleX: 0, opacity: 0 }, { scaleX: 1, opacity: 1, duration: 0.6, ease: "power2.inOut" }, 0.6);
+          tl.fromTo("#f3-headline", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 1.05);
+          tl.fromTo("#f3-sub", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 1.3);
+          tl.fromTo("#f3-note", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 1.6);
+          window.__timelines["03-one-scan"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Frame 4 — Thread is live (wireframe)</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          font-family: Inter, -apple-system, system-ui, sans-serif;
+          color: #f4f8ff;
+        }
+        #f4-plane {
+          position: absolute;
+          inset: 0;
+          background: #070b11;
+        }
+        #f4-phone {
+          position: absolute;
+          left: 596px;
+          top: 96px;
+          width: 405px;
+          height: 880px;
+          border: 1px solid #111c2d;
+          border-radius: 34px;
+          background: #0b1320;
+          display: grid;
+          place-items: center;
+          text-align: center;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 17px;
+          line-height: 1.6;
+          letter-spacing: 0.08em;
+          color: #9fb0c9;
+          box-sizing: border-box;
+          padding: 0 20px;
+        }
+        #f4-eyebrow {
+          position: absolute;
+          left: 84px;
+          top: 424px;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 22px;
+          font-weight: 500;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #f08a24;
+        }
+        #f4-headline {
+          position: absolute;
+          left: 82px;
+          top: 484px;
+          width: 470px;
+          /* 76px, not 96: "whole setup." is 12 characters and overflows the
+             472px text column at the larger size. */
+          font-size: 76px;
+          font-weight: 700;
+          line-height: 1.0;
+          letter-spacing: -0.025em;
+          text-indent: -3px;
+        }
+        /* Optical alignment, not geometric: the cap T's crossbar leaves the
+           lower left empty, so the first line reads inset even when the boxes
+           are flush. text-indent targets the first line only; splitting into
+           two block spans instead makes their line boxes overlap.
+           Re-measure if the copy or size changes — the value is size-dependent. */
+
+        /* The 'paired · localhost · 7071' pill and its status dot were removed:
+           the phone screenshot behind this frame already shows that exact pill,
+           in green. The overlay was repeating the screenshot verbatim — eyebrow,
+           headline and pill all three — and the orange dot fought the app's own
+           green success accent. */
+        .wf-tag {
+          position: absolute;
+          right: 22px;
+          bottom: 16px;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 15px;
+          letter-spacing: 0.1em;
+          color: #6b7a91;
+        }
+      </style>
+
+      <div data-hf-id="hf-nxdp" id="root" data-composition-id="04-thread-is-live" data-width="1080" data-height="1080">
+        <div data-hf-id="hf-an7y" id="f4-plane"></div>
+        <div data-hf-id="hf-9qdx" id="f4-phone">[ PHONE ]<br data-hf-id="hf-x5px">promo-02-05-thread-is-live<br data-hf-id="hf-rsrt">HANDSHAKE COMPLETE</div>
+        <div data-hf-id="hf-1vg1" id="f4-eyebrow">// 30 seconds later</div>
+        <div data-hf-id="hf-o93w" id="f4-headline">That&rsquo;s the<br data-hf-id="hf-szow">whole setup.</div>
+        <div data-hf-id="hf-ycvy" class="wf-tag">wireframe · frame 4</div>
+      </div>
+
+      <script>
+        window.__timelines = window.__timelines || {};
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo("#f4-phone", { opacity: 0, scale: 0.97 }, { opacity: 1, scale: 1, duration: 0.45, ease: "power3.out" }, 0);
+          tl.fromTo("#f4-eyebrow", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" }, 0.22);
+          tl.fromTo("#f4-headline", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.4);
+          window.__timelines["04-thread-is-live"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
