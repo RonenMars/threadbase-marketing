@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Frame 5 — Everything, live (wireframe)</title>
+    <title>Frame 5 — Everything, live</title>
   </head>
   <body>
     <template>
@@ -27,16 +27,14 @@
           border: 1px solid #111c2d;
           border-radius: 34px;
           background: #0b1320;
-          display: grid;
-          place-items: center;
-          text-align: center;
-          font-family: "JetBrains Mono", ui-monospace, monospace;
-          font-size: 17px;
-          line-height: 1.6;
-          letter-spacing: 0.08em;
-          color: #9fb0c9;
+          overflow: hidden;
           box-sizing: border-box;
-          padding: 0 20px;
+        }
+        #f5-phone img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
         }
         #f5-live {
           position: absolute;
@@ -100,20 +98,11 @@
         #f5-l1 { top: 632px; }
         #f5-l2 { top: 692px; }
         #f5-l3 { top: 752px; }
-        .wf-tag {
-          position: absolute;
-          right: 22px;
-          bottom: 16px;
-          font-family: "JetBrains Mono", ui-monospace, monospace;
-          font-size: 15px;
-          letter-spacing: 0.1em;
-          color: #6b7a91;
-        }
       </style>
 
       <div data-hf-id="hf-pssk" id="root" data-composition-id="05-everything-live" data-width="1080" data-height="1080">
         <div data-hf-id="hf-vln3" id="f5-plane"></div>
-        <div data-hf-id="hf-cdzu" id="f5-phone">[ PHONE ]<br data-hf-id="hf-x5px">promo-02-06-hub-populated<br data-hf-id="hf-rsrt">live sessions</div>
+        <div data-hf-id="hf-cdzu" id="f5-phone"><img data-hf-id="hf-x5px" src="source-screens/promo-02-06-hub-populated.png" alt="Threadbase hub with live sessions"></div>
         <div data-hf-id="hf-6ycq" id="f5-live">live · 4</div>
         <div data-hf-id="hf-wo7q" id="f5-headline">Every session.<br data-hf-id="hf-szow">In your pocket.</div>
         <div data-hf-id="hf-8ghz" id="f5-agents">Claude Code <span data-hf-id="hf-l2w5" id="f5-amp">and</span> Codex.</div>
@@ -123,7 +112,6 @@
         <div data-hf-id="hf-ri1i" class="f5-row" id="f5-r2"></div>
         <div data-hf-id="hf-jdj9" class="f5-lbl" id="f5-l3">idle · fix/login <span data-hf-id="hf-auid" class="f5-prov">claude code</span></div>
         <div data-hf-id="hf-vg5j" class="f5-row" id="f5-r3"></div>
-        <div data-hf-id="hf-xykx" class="wf-tag">wireframe · frame 5</div>
       </div>
 
       <script>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Frame 1 — Skip the README</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          font-family: Inter, -apple-system, system-ui, sans-serif;
+          color: #f4f8ff;
+        }
+        #s1-plane {
+          position: absolute;
+          inset: 0;
+          background: #070b11;
+        }
+        #s1-headline {
+          position: absolute;
+          left: 84px;
+          right: 84px;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 76px;
+          font-weight: 700;
+          line-height: 1.02;
+          letter-spacing: -0.02em;
+        }
+        #s1-cue {
+          color: #f08a24;
+        }
+        #s1-caret {
+          display: inline-block;
+          width: 4px;
+          height: 62px;
+          background: #f08a24;
+          vertical-align: -8px;
+          margin-left: 4px;
+          animation: s1-blink 0.5s step-end infinite;
+        }
+        @keyframes s1-blink {
+          50% { opacity: 0; }
+        }
+      </style>
+
+      <div data-hf-id="hf-s1r0" id="root" data-composition-id="01-skip-the-readme" data-width="1080" data-height="1080">
+        <div data-hf-id="hf-s1p1" id="s1-plane"></div>
+        <div data-hf-id="hf-s1h1" id="s1-headline"><span data-hf-id="hf-s1c1" id="s1-cue">//</span> skip the readme.md<span data-hf-id="hf-s1cr" id="s1-caret"></span></div>
+      </div>
+
+      <script>
+        window.__timelines = window.__timelines || {};
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo("#s1-headline", { opacity: 0, scale: 0.94 }, { opacity: 1, scale: 1, duration: 0.64, ease: "power3.out" }, 0.1);
+          window.__timelines["01-skip-the-readme"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

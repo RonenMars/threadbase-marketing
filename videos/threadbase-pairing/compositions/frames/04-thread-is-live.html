@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Frame 4 — Thread is live (wireframe)</title>
+    <title>Frame 4 — Thread is live</title>
   </head>
   <body>
     <template>
@@ -27,16 +27,23 @@
           border: 1px solid #111c2d;
           border-radius: 34px;
           background: #0b1320;
-          display: grid;
-          place-items: center;
-          text-align: center;
-          font-family: "JetBrains Mono", ui-monospace, monospace;
-          font-size: 17px;
-          line-height: 1.6;
-          letter-spacing: 0.08em;
-          color: #9fb0c9;
+          overflow: hidden;
           box-sizing: border-box;
-          padding: 0 20px;
+        }
+        /* Cropped to the middle band: the full 1206x2622 capture carries a
+           "Back" arrow at the top and a blue "Enter Threadbase" button at the
+           bottom that don't belong to this beat (STORYBOARD.md). Rendered at
+           222% width (native aspect preserved via height:auto) and shifted up
+           507px isolates the handshake check + copy + pill inside the box;
+           the box's overflow:hidden clips the rest. */
+        #f4-phone img {
+          display: block;
+          position: absolute;
+          top: -507px;
+          left: 50%;
+          width: 222%;
+          height: auto;
+          transform: translateX(-50%);
         }
         #f4-eyebrow {
           position: absolute;
@@ -51,45 +58,27 @@
         }
         #f4-headline {
           position: absolute;
-          left: 82px;
-          top: 484px;
+          left: 84px;
+          top: 500px;
           width: 470px;
-          /* 76px, not 96: "whole setup." is 12 characters and overflows the
-             472px text column at the larger size. */
-          font-size: 76px;
+          font-size: 92px;
           font-weight: 700;
           line-height: 1.0;
           letter-spacing: -0.025em;
-          text-indent: -3px;
         }
-        /* Optical alignment, not geometric: the cap T's crossbar leaves the
-           lower left empty, so the first line reads inset even when the boxes
-           are flush. text-indent targets the first line only; splitting into
-           two block spans instead makes their line boxes overlap.
-           Re-measure if the copy or size changes — the value is size-dependent. */
 
         /* The 'paired · localhost · 7071' pill and its status dot were removed:
            the phone screenshot behind this frame already shows that exact pill,
            in green. The overlay was repeating the screenshot verbatim — eyebrow,
            headline and pill all three — and the orange dot fought the app's own
            green success accent. */
-        .wf-tag {
-          position: absolute;
-          right: 22px;
-          bottom: 16px;
-          font-family: "JetBrains Mono", ui-monospace, monospace;
-          font-size: 15px;
-          letter-spacing: 0.1em;
-          color: #6b7a91;
-        }
       </style>
 
       <div data-hf-id="hf-nxdp" id="root" data-composition-id="04-thread-is-live" data-width="1080" data-height="1080">
         <div data-hf-id="hf-an7y" id="f4-plane"></div>
-        <div data-hf-id="hf-9qdx" id="f4-phone">[ PHONE ]<br data-hf-id="hf-x5px">promo-02-05-thread-is-live<br data-hf-id="hf-rsrt">HANDSHAKE COMPLETE</div>
+        <div data-hf-id="hf-9qdx" id="f4-phone"><img data-hf-id="hf-x5px" data-layout-allow-overflow src="source-screens/promo-02-05-thread-is-live.png" alt="Handshake complete, thread is live"></div>
         <div data-hf-id="hf-1vg1" id="f4-eyebrow">// 30 seconds later</div>
-        <div data-hf-id="hf-o93w" id="f4-headline">That&rsquo;s the<br data-hf-id="hf-szow">whole setup.</div>
-        <div data-hf-id="hf-ycvy" class="wf-tag">wireframe · frame 4</div>
+        <div data-hf-id="hf-o93w" id="f4-headline">That&rsquo;s it.</div>
       </div>
 
       <script>

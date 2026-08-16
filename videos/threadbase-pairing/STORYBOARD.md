@@ -1,105 +1,115 @@
 ---
 format: 1080x1080
-duration: 22.5s
+duration: 26.7s
 message: "Pairing Threadbase to your own machine takes one command and one scan"
-arc: "BAB — before (friction) → bridge (tb pair) → step 1 (scan) → step 2 (handshake) → wow (live hub) → trust → CTA"
+arc: "hook (skip the readme) → bridge (install/serve/pair) → step 1 (scan) → step 2 (handshake) → wow (live hub) → trust → CTA"
 audience: "developers already running Claude Code or Codex daily"
 mode: collaborative
 music: none
 ---
 
-## Frame 1 — One command
+## Revision — 2026-08-16
+
+Restructured from the original 6-frame cut after Frame 1 ("one command.") and Frame 3
+("one scan.") were found to say and show nearly the same thing — same claim, same QR,
+twice. The pairing QR now carries through Frames 2 and 3 as one continuous action, and a new cold-open stinger replaces the old
+abstract hook, and the "Pull a thread. Watch it weave." welcome-screen beat was cut entirely
+(not folded in elsewhere) to keep the frame count flat. Frame count unchanged at 6; total
+runtime 22.5s → 26.7s after the requested timing pass.
+
+## Frame 1 — Skip the README
 
 - status: built
-- src: compositions/frames/01-one-command.html
-- duration: 4s
+- src: compositions/frames/01-skip-the-readme.html
+- duration: 3s
 - transition_in: cut
-- scene: "A mono caret types `$ tb pair` on the black plane; a QR block resolves beside it."
+- scene: "Type-only flash on the black plane: '// skip the readme.md'."
+- blueprint: kinetic-type-beats
+- poster: 0.4
+
+Pure stinger — no product, no terminal, nothing to read but the line. Its job is only to
+catch the eye and set up Frame 2 as the payoff: the promise is "no setup doc," the very
+next frame proves it in three lines.
+
+On-screen text: `// skip the readme.md`, in the video's own code-comment register (the `//`
+prefix already established by every later eyebrow).
+
+## Frame 2 — Install, serve, pair
+
+- status: built
+- src: compositions/frames/02-one-command.html
+- duration: 7.5s
+- transition_in: cut
+- scene: "Three commands type in sequence on the black plane; the pair QR resolves beside them after the last one."
 - blueprint: prompt-type-submit-generate
 - asset_candidates: source-screens/promo-02-03b-tb-pair-command.png
-- poster: 3.4
-- handoff_out: "QR block — x 640, y 300, 300x300, scale 1, opacity 1, static (no motion at the cut)"
+- poster: 3.1
+- handoff_out: "QR block — x 640, y 176, 300x300, scale 1, opacity 1, static (no motion at the cut)"
 
-The hook is the command itself — this audience reads `$ tb pair` faster than any headline.
-Open on the black plane with nothing but a caret, so the first motion on screen is typing.
-The QR resolving beside the finished command is the promise stated without a word of marketing: this is the whole setup.
+The real flow is three commands, not one — install, start the streamer, then pair prints
+the QR. Typed small-to-large (install muted and quick, `serve` mid-weight, `pair` the
+brightest/boldest — it's the one that matters) so the hierarchy reads even at a glance.
+The QR is the promise stated without a word of marketing: this is the whole computer side.
 
-On-screen text: `$ tb pair` (typed), then the chrome line `ON YOUR COMPUTER`.
-No product name yet — the name lands in Frame 2 where the phone does.
+No product name yet — the phone doesn't appear until Frame 3.
 
-## Frame 2 — Pull a thread
-
-- status: built
-- src: compositions/frames/02-pull-a-thread.html
-- duration: 4.5s
-- transition_in: cut
-- scene: "The phone enters holding the app welcome screen; store marks and the (BETA) availability line land beneath the headline."
-- blueprint: device-surface-showcase
-- asset_candidates: source-screens/promo-02-01-welcome.png
-- poster: 1.5
-
-The product arrives as a device, not a logo, and this is also where the viewer learns how to get it.
-The app's own onboarding copy does the introducing — `// AMBIENT CODING`, "Pull a thread. Watch it weave." — so the video never has to write a tagline.
-Keep the phone letterboxed inside the square with the terminal plane still behind it; the two halves of the story are on screen together from here on.
-
-Beneath the rule: the App Store and Google Play marks, then "iOS and Android **(BETA)**" with (BETA) bold in brand orange, then threadbase.sh/betas.
-The (BETA) marker is load-bearing, not decoration — the app is not on the App Store yet, and it is what keeps the badges honest. Do not drop it, shrink it, or grey it out.
-Badge geometry is constrained: the left column ends at 556 where the phone begins at 596, so both badges and their gap must fit inside 472px.
-
-## Frame 3 — One scan
+## Frame 3 — Scan to connect
 
 - status: built
 - src: compositions/frames/03-one-scan.html
-- duration: 4s
+- duration: 4.2s
 - transition_in: cut
-- scene: "The phone screen swaps to the 'Scan to pair.' pane; the QR from Frame 1 sits opposite it."
+- scene: "The QR rises in, the phone follows, then a reticle locks and scans the code once. A small server illustration appears beneath the QR; App Store / Google Play badges land after the scan."
 - blueprint: device-surface-showcase
-- handoff_in: "QR block — x 640, y 300, 300x300, scale 1, opacity 1, static; it does not re-enter, it was already there"
+- handoff_in: "the Frame 2 QR reappears in the same position, then the phone enters and scans it"
 - asset_candidates: source-screens/promo-02-03-scan-to-pair.png, source-screens/promo-02-02-connect-chooser.png
-- poster: 2.2
+- poster: 1.9
 
-The beat the whole video is named after.
-The QR established in Frame 1 stays put and the phone turns to face it — the pairing is shown as a physical relationship between two objects rather than a UI flow.
+The phone-side half of Frame 2's pairing, and where "get the app" lives now that the old
+welcome-screen frame is gone. The same code returns as a deliberate handoff: QR first,
+phone second, then a reticle lock and one scan-line sweep make the scan causal. A compact
+server illustration appears below the QR as the destination of the handoff. The store
+badges answer "how do I get this" only after that interaction lands.
 
-Overlay: "one scan."
+Overlay: `// on your phone` → "scan to connect." App Store + Google Play marks, then
+"iOS and Android **(BETA)**". No URL here — Frame 6 owns the CTA link; repeating it doubles
+a line for no reason.
 
-> If the physical-iPhone footage arrives, this frame becomes the video's centerpiece:
-> the real camera viewfinder framing the terminal QR, replacing the static pane.
-> Until then the static pane carries it and the scan reads as implied.
+> If physical-iPhone footage arrives (see `CAPTURE-IPHONE.md` — currently stale, needs a
+> rewrite against this frame list), it replaces the static pane and reticle with a real
+> camera viewfinder reading the QR. Until then the static pane + reticle carry it.
 
 ## Frame 4 — Thread is live
 
 - status: built
 - src: compositions/frames/04-thread-is-live.html
-- duration: 4s
+- duration: 3s
 - transition_in: cut
-- scene: "The phone carries HANDSHAKE COMPLETE; the overlay says what it means — 'That's the whole setup.'"
+- scene: "The phone carries HANDSHAKE COMPLETE, cropped to the middle band; the overlay says 'That's it.'"
 - blueprint: titlecard-reveal
 - asset_candidates: source-screens/promo-02-05-thread-is-live.png
 - poster: 2.4
 
-The payoff, and the one frame where the overlay must NOT repeat the phone.
-The screenshot already contains all three things this frame used to overlay — the `HANDSHAKE COMPLETE` eyebrow, the `Thread is live.` headline, and the `paired · localhost · 7071` pill — so the original design said everything twice, with the weaker copy on the left. The phone's version wins: it comes with the green check and the glow.
-The overlay now carries what the screenshot cannot: that the friction is over. Eyebrow `// 30 SECONDS LATER`, headline "That's the whole setup.", no pill.
-The status dot was also dropped — brand orange beside the app's green success accent put two accent colours on one claim.
+The payoff. Headline shortened from "That's the whole setup." to "That's it." — the
+screenshot already carries `HANDSHAKE COMPLETE`, `Thread is live.`, and the green check;
+the overlay only needs the closing beat, not a restatement.
 
-Headline is 76px, not 96: "whole setup." is 12 characters and overflows the 472px text column at the larger size. `text-indent: -3px` optically aligns the cap T over the lowercase w (measured 82 vs 83 after correction).
-
-When dressing this frame, crop the screenshot to the middle band. The full shot carries a "Back" arrow at the top and a blue "Enter Threadbase" button at the bottom; neither belongs to this beat.
+Crop the screenshot to the middle band — the full shot carries a "Back" arrow at the top
+and a blue "Enter Threadbase" button at the bottom that don't belong to this beat.
 
 ## Frame 5 — Everything, live
 
 - status: built
 - src: compositions/frames/05-everything-live.html
-- duration: 3.5s
+- duration: 4s
 - transition_in: cut
 - scene: "The hub populated — live sessions listed, LIVE · n counting."
 - blueprint: device-surface-showcase
 - asset_candidates: source-screens/promo-02-06-hub-populated.png
 - poster: 1.8
 
-The proof that pairing bought something.
-This is the first frame where the viewer sees what the app is actually for: real sessions, real statuses, on the phone.
+Unchanged from the original cut. The proof that pairing bought something — real sessions,
+real statuses, on the phone.
 
 Overlay: "every session. live. in your pocket."
 
@@ -107,25 +117,24 @@ Overlay: "every session. live. in your pocket."
 
 - status: built
 - src: compositions/frames/06-your-own-server.html
-- duration: 2.5s
+- duration: 5s
 - transition_in: cut
-- scene: "Type-only close on the black plane: the trust line, then the URL."
+- scene: "Type-only close on the black plane: the trust line, the URL, then a CTA QR floats up from the bottom beside a vertical App Store / Google Play stack."
 - blueprint: kinetic-type-beats
-- poster: 1.4
+- poster: 1.8
 
-The differentiator, stated plainly because this audience is the one that cares:
-no cloud account, no telemetry, the streamer is yours.
+The differentiator, stated plainly, plus a new close: a QR under the URL that resolves to
+the same `threadbase.sh/betas` link and floats up from below — a later scan-to-visit CTA,
+not another pairing beat.
 
-On-screen text, in two beats: "your own server. no telemetry." → `threadbase.sh/betas`
+On-screen text, in beats: "your own server. no telemetry." → `threadbase.sh/betas` → CTA QR → stacked App Store / Google Play badges. The existing
+"iOS and Android **(BETA)**" subtitle remains in place above the CTA elements.
 
 ## Video direction
-
-**Optical alignment of stacked headlines.** Headlines are left-aligned by ink, not by box.
-Frame 4 carries `text-indent: -4px` because a cap T over a lowercase i reads inset even when the boxes are flush — measured on the render, "Thread" started 2px left of "is live." yet carried ~15% less ink in the first 40px.
-Measured left-edge deltas for the other stacked headlines: Frame 2 (P/W) −2px, Frame 5 (E/I) 0px, Frame 6 (Y/N) −4px; all three self-correct through natural side bearings and need no indent.
-Re-measure after any font-size or copy change — the correction is size-dependent and does not survive a rewrite.
 
 **Motion doctrine.** Every frame develops across its full duration rather than front-loading: eyebrow → headline → supporting element → receipt, each 0.2–0.4s apart.
 Nothing moves after its beat lands; the frame settles and holds so a muted viewer can read it.
 
-**The margin is 84px** on the left for every frame. The phone occupies 596–1001, so the text column is 84–556 and no element may cross 556.
+**The margin is 84px** on the left for every frame. Where the phone sits on the right (596–1001), the text column is 84–556 and no element may cross 556; Frame 3 mirrors this with the phone on the left (78–483) and text at 640–1012.
+
+**One pairing action, one CTA action.** Frames 2 and 3 hand the same pairing code from computer to phone so the scan reads as one continuous interaction. Frame 6's QR is a distinct, later CTA (the marketing URL, not a pairing handshake) and floats up as a separate object.
