@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Frame 6 — Your own server</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          font-family: Inter, -apple-system, system-ui, sans-serif;
+          color: #f4f8ff;
+        }
+        #f6-plane {
+          position: absolute;
+          inset: 0;
+          background: #070b11;
+        }
+        #f6-line1 {
+          position: absolute;
+          left: 84px;
+          top: 372px;
+          width: 912px;
+          font-size: 104px;
+          font-weight: 700;
+          line-height: 0.96;
+          letter-spacing: -0.025em;
+        }
+        #f6-rule {
+          position: absolute;
+          left: 84px;
+          top: 626px;
+          width: 912px;
+          height: 1px;
+          background: #111c2d;
+          transform-origin: left center;
+        }
+        #f6-url {
+          position: absolute;
+          left: 84px;
+          top: 674px;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 46px;
+          font-weight: 600;
+          letter-spacing: 0.01em;
+          color: #f08a24;
+        }
+        #f6-beta {
+          font-weight: 700;
+          color: #f08a24;
+        }
+        #f6-kicker {
+          position: absolute;
+          left: 86px;
+          top: 754px;
+          font-size: 27px;
+          color: #9fb0c9;
+        }
+        #f6-qr {
+          position: absolute;
+          left: 84px;
+          top: 824px;
+          width: 170px;
+          height: 170px;
+          border: 1px solid #111c2d;
+          border-radius: 10px;
+          background: #0b1320;
+          display: grid;
+          place-items: center;
+          box-sizing: border-box;
+          padding: 18px;
+        }
+        #f6-qr img {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+        #f6-stores {
+          position: absolute;
+          left: 264px;
+          top: 824px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+        .f6-store {
+          width: 226px;
+          height: 80px;
+          box-sizing: border-box;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 0 16px;
+          border: 1px solid #111c2d;
+          border-radius: 12px;
+          background: #0b1320;
+        }
+        .f6-store img {
+          width: 32px;
+          height: 32px;
+          display: block;
+          flex: none;
+        }
+        .f6-store span {
+          font-size: 19px;
+          font-weight: 600;
+          color: #f4f8ff;
+          white-space: nowrap;
+        }
+      </style>
+
+      <div data-hf-id="hf-w4ph" id="root" data-composition-id="06-your-own-server" data-width="1080" data-height="1080">
+        <div data-hf-id="hf-wrdk" id="f6-plane"></div>
+        <div data-hf-id="hf-yo5p" id="f6-line1">Your own server.<br data-hf-id="hf-x5px">No telemetry.</div>
+        <div data-hf-id="hf-mhrs" id="f6-rule"></div>
+        <div data-hf-id="hf-j4fh" id="f6-url">threadbase.sh/betas</div>
+        <div data-hf-id="hf-jdju" id="f6-kicker">iOS and Android <span data-hf-id="hf-s44o" id="f6-beta">(BETA)</span></div>
+        <div data-hf-id="hf-f6qr" id="f6-qr"><img data-hf-id="hf-f6qi" src="assets/pair-qr.svg" alt="QR code to threadbase.sh/betas"></div>
+        <div data-hf-id="hf-f6st" id="f6-stores">
+          <div data-hf-id="hf-f6as" class="f6-store">
+            <img data-hf-id="hf-f6ai" src="assets/appstore-mark.svg" alt="App Store">
+            <span data-hf-id="hf-f6at">App Store</span>
+          </div>
+          <div data-hf-id="hf-f6gp" class="f6-store">
+            <img data-hf-id="hf-f6gi" src="assets/googleplay-mark.svg" alt="Google Play">
+            <span data-hf-id="hf-f6gt">Google Play</span>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        window.__timelines = window.__timelines || {};
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo("#f6-line1", { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0);
+          tl.fromTo("#f6-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.inOut" }, 0.5);
+          tl.fromTo("#f6-url", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.72);
+          tl.fromTo("#f6-qr", { opacity: 0, y: 180 }, { opacity: 1, y: 0, duration: 0.75, ease: "power3.out" }, 1.15);
+          tl.fromTo("#f6-stores", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 1.9);
+          tl.fromTo(".f6-store", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.35, stagger: 0.1, ease: "power2.out" }, 1.9);
+          tl.fromTo("#f6-kicker", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: "power2.out" }, 2.35);
+          window.__timelines["06-your-own-server"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

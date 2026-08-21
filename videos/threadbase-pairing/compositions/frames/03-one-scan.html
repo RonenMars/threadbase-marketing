@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Frame 3 — Scan to connect</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          font-family: Inter, -apple-system, system-ui, sans-serif;
+          color: #f4f8ff;
+        }
+        #f3-plane {
+          position: absolute;
+          inset: 0;
+          background: #070b11;
+        }
+        #f3-phone {
+          position: absolute;
+          left: 78px;
+          top: 96px;
+          width: 405px;
+          height: 880px;
+          border: 1px solid #111c2d;
+          border-radius: 34px;
+          background: #0b1320;
+          overflow: hidden;
+          box-sizing: border-box;
+        }
+        #f3-screen {
+          position: absolute;
+          inset: 12px;
+          overflow: hidden;
+          padding: 24px 22px;
+          border-radius: 24px;
+          background:
+            radial-gradient(circle at 80% 18%, rgba(240, 138, 36, 0.18), transparent 30%),
+            linear-gradient(160deg, #152b4a 0%, #0a1220 52%, #0b1320 100%);
+          color: #f4f8ff;
+        }
+        #f3-screen::before {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 36%);
+          content: "";
+        }
+        .f3-status,
+        .f3-appbar,
+        .f3-screen-kicker,
+        .f3-screen-title,
+        .f3-screen-card,
+        .f3-screen-note,
+        .f3-screen-nav {
+          position: relative;
+          z-index: 1;
+        }
+        .f3-status {
+          display: flex;
+          justify-content: space-between;
+          color: #9fb0c9;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 15px;
+        }
+        .f3-status-icons {
+          color: #f4f8ff;
+          letter-spacing: 0.18em;
+        }
+        .f3-appbar {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          margin-top: 34px;
+          font-size: 19px;
+          font-weight: 700;
+        }
+        .f3-app-mark {
+          width: 26px;
+          height: 26px;
+          border-radius: 8px;
+          background: linear-gradient(135deg, #f08a24, #f4b15f);
+          box-shadow: 0 8px 18px rgba(0, 0, 0, 0.24);
+        }
+        .f3-menu {
+          margin-left: auto;
+          color: #6f7e94;
+          letter-spacing: 0.18em;
+        }
+        .f3-screen-kicker {
+          margin-top: 72px;
+          color: #f08a24;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 15px;
+          letter-spacing: 0.16em;
+        }
+        .f3-screen-title {
+          margin-top: 10px;
+          font-size: 31px;
+          font-weight: 700;
+          line-height: 1.05;
+          letter-spacing: -0.03em;
+        }
+        .f3-screen-card {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 22px;
+          height: 320px;
+          margin-top: 28px;
+          border: 1px solid rgba(159, 176, 201, 0.18);
+          border-radius: 22px;
+          background: rgba(7, 11, 17, 0.42);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 24px 50px rgba(0, 0, 0, 0.2);
+        }
+        .f3-link-art {
+          position: relative;
+          width: 132px;
+          height: 132px;
+          border: 1px solid rgba(240, 138, 36, 0.45);
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(240, 138, 36, 0.18), transparent 66%);
+          box-shadow: 0 18px 34px rgba(0, 0, 0, 0.22);
+        }
+        .f3-orb {
+          position: absolute;
+          top: 40px;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+        }
+        .f3-orb-left {
+          left: 13px;
+          background: #f08a24;
+        }
+        .f3-orb-right {
+          right: 13px;
+          background: #61a7ff;
+        }
+        .f3-link {
+          position: absolute;
+          top: 62px;
+          left: 42px;
+          width: 48px;
+          height: 8px;
+          border-top: 2px solid #f4f8ff;
+          border-bottom: 2px solid #f4f8ff;
+          opacity: 0.82;
+        }
+        .f3-card-label {
+          color: #cdd7e8;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 14px;
+          letter-spacing: 0.12em;
+          text-transform: uppercase;
+        }
+        .f3-screen-note {
+          margin-top: 28px;
+          color: #9fb0c9;
+          font-size: 19px;
+          line-height: 1.35;
+        }
+        .f3-screen-nav {
+          display: flex;
+          justify-content: center;
+          gap: 12px;
+          margin-top: 54px;
+        }
+        .f3-nav-dot {
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          background: #33445d;
+        }
+        .f3-nav-dot.active {
+          width: 24px;
+          border-radius: 999px;
+          background: #f08a24;
+        }
+        #f3-qr {
+          position: absolute;
+          left: 640px;
+          top: 300px;
+          width: 300px;
+          height: 300px;
+          border: 1px solid #111c2d;
+          border-radius: 10px;
+          background: #0b1320;
+          display: grid;
+          place-items: center;
+          box-sizing: border-box;
+          padding: 30px;
+        }
+        #f3-qr img {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+        #f3-scan-gate {
+          position: absolute;
+          left: 555px;
+          top: 215px;
+          width: 470px;
+          height: 470px;
+        }
+        #f3-connect-link {
+          position: absolute;
+          left: 789px;
+          top: 604px;
+          width: 2px;
+          height: 44px;
+          background: #f08a24;
+          transform-origin: center top;
+        }
+        #f3-server {
+          position: absolute;
+          left: 640px;
+          top: 648px;
+          width: 300px;
+          height: 110px;
+          border: 1px solid #111c2d;
+          border-radius: 14px;
+          background: #0b1320;
+          box-shadow: 0 18px 34px rgba(0, 0, 0, 0.22);
+        }
+        #f3-server svg {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+        #f3-eyebrow {
+          position: absolute;
+          left: 640px;
+          top: 100px;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 22px;
+          font-weight: 500;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #f08a24;
+        }
+        #f3-headline {
+          position: absolute;
+          left: 640px;
+          top: 142px;
+          width: 380px;
+          font-size: 68px;
+          font-weight: 700;
+          line-height: 1.0;
+          letter-spacing: -0.02em;
+        }
+        #f3-rule {
+          position: absolute;
+          left: 642px;
+          top: 270px;
+          width: 220px;
+          height: 1px;
+          background: #f08a24;
+          transform-origin: left center;
+        }
+        #f3-badges {
+          position: absolute;
+          left: 642px;
+          top: 790px;
+          display: flex;
+          flex-direction: row;
+          gap: 12px;
+        }
+        .f3-badge {
+          height: 66px;
+          width: max-content;
+          box-sizing: border-box;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 0 16px;
+          border: 1px solid #111c2d;
+          border-radius: 13px;
+          background: #0b1320;
+        }
+        .f3-badge img {
+          width: 32px;
+          height: 32px;
+          display: block;
+          flex: none;
+        }
+        .f3-badge span {
+          font-size: 19px;
+          font-weight: 600;
+          color: #f4f8ff;
+          white-space: nowrap;
+        }
+        #f3-avail {
+          position: absolute;
+          left: 642px;
+          top: 880px;
+          width: 372px;
+          font-size: 25px;
+          color: #9fb0c9;
+        }
+        #f3-beta {
+          font-weight: 700;
+          color: #f08a24;
+        }
+      </style>
+
+      <div data-hf-id="hf-p1h4" id="root" data-composition-id="03-one-scan" data-width="1080" data-height="1080">
+        <div data-hf-id="hf-7w4d" id="f3-plane"></div>
+        <div data-hf-id="hf-f3qr" id="f3-qr"><img data-hf-id="hf-f3qi" src="assets/pair-qr.svg" alt="Pairing QR code"></div>
+        <div data-hf-id="hf-z08y" id="f3-phone">
+          <div data-hf-id="hf-f3sc" id="f3-screen" role="img" aria-label="Generic Threadbase mobile pairing illustration">
+            <div data-hf-id="hf-f3st" class="f3-status"><span data-hf-id="hf-f3time">9:41</span><span data-hf-id="hf-f3icons" class="f3-status-icons">••• ◉</span></div>
+            <div data-hf-id="hf-f3ab" class="f3-appbar"><span data-hf-id="hf-f3am" class="f3-app-mark"></span><span data-hf-id="hf-f3an">Threadbase</span><span data-hf-id="hf-f3mm" class="f3-menu">•••</span></div>
+            <div data-hf-id="hf-f3sk" class="f3-screen-kicker">PAIRING</div>
+            <div data-hf-id="hf-f3sl" class="f3-screen-title">Ready to connect</div>
+            <div data-hf-id="hf-f3card" class="f3-screen-card">
+              <div data-hf-id="hf-f3art" class="f3-link-art" aria-hidden="true"><span data-hf-id="hf-f3ol" class="f3-orb f3-orb-left"></span><span data-hf-id="hf-f3or" class="f3-orb f3-orb-right"></span><span data-hf-id="hf-f3ln" class="f3-link"></span></div>
+              <div data-hf-id="hf-f3cl" class="f3-card-label">Secure handoff</div>
+            </div>
+            <div data-hf-id="hf-f3sn" class="f3-screen-note">One scan to bring your workspace with you.</div>
+            <div data-hf-id="hf-f3nav" class="f3-screen-nav" aria-hidden="true"><span data-hf-id="hf-f3nd1" class="f3-nav-dot active"></span><span data-hf-id="hf-f3nd2" class="f3-nav-dot"></span><span data-hf-id="hf-f3nd3" class="f3-nav-dot"></span></div>
+          </div>
+        </div>
+        <div data-hf-id="hf-f3sg" id="f3-scan-gate" class="clip" data-composition-id="camera-scan-gate" data-composition-src="compositions/components/camera-scan-gate.html" data-variable-values='{"scanColor":"#f08a24","targetLabel":"paired","sweepSpeed":0.9}' data-start="1.25" data-duration="2.95" data-track-index="2" data-width="470" data-height="470"></div>
+        <div data-hf-id="hf-f3cn" id="f3-connect-link" aria-hidden="true"></div>
+        <div data-hf-id="hf-f3sv" id="f3-server" role="img" aria-label="Generic Threadbase server illustration">
+          <svg data-hf-id="hf-f3svg" viewBox="0 0 300 110" aria-hidden="true">
+            <rect data-hf-id="hf-f3sr0" x="20" y="16" width="260" height="34" rx="8" fill="#152b4a" stroke="#243b5b" />
+            <rect data-hf-id="hf-f3sr1" x="20" y="60" width="260" height="34" rx="8" fill="#101e33" stroke="#243b5b" />
+            <circle data-hf-id="hf-f3sd0" cx="42" cy="33" r="5" fill="#f08a24" />
+            <circle data-hf-id="hf-f3sd1" cx="42" cy="77" r="5" fill="#61a7ff" />
+            <path data-hf-id="hf-f3sp0" d="M62 33h88M62 77h124" stroke="#6f7e94" stroke-width="4" stroke-linecap="round" />
+            <path data-hf-id="hf-f3sp1" d="M174 33h76M202 77h48" stroke="#33445d" stroke-width="4" stroke-linecap="round" />
+          </svg>
+        </div>
+        <div data-hf-id="hf-f3eb" id="f3-eyebrow">// on your phone</div>
+        <div data-hf-id="hf-t1xm" id="f3-headline">scan to<br data-hf-id="hf-f3br">connect.</div>
+        <div data-hf-id="hf-f3ru" id="f3-rule"></div>
+        <div data-hf-id="hf-f3bd" id="f3-badges">
+          <div data-hf-id="hf-f3bi" class="f3-badge">
+            <img data-hf-id="hf-f3ii" src="assets/appstore-mark.svg" alt="App Store">
+            <span data-hf-id="hf-f3it">App Store</span>
+          </div>
+          <div data-hf-id="hf-f3bp" class="f3-badge">
+            <img data-hf-id="hf-f3ip" src="assets/googleplay-mark.svg" alt="Google Play">
+            <span data-hf-id="hf-f3pt">Google Play</span>
+          </div>
+        </div>
+        <div data-hf-id="hf-25ir" id="f3-avail">iOS and Android <span data-hf-id="hf-f3bt" id="f3-beta">(BETA)</span></div>
+      </div>
+
+      <script>
+        window.__timelines = window.__timelines || {};
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          tl.fromTo("#f3-qr", { opacity: 0, y: 80, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, 0.05);
+          tl.fromTo("#f3-phone", { opacity: 0, x: -42, rotation: -2 }, { opacity: 1, x: 0, rotation: 0, duration: 0.55, ease: "power3.out" }, 0.65);
+          tl.fromTo("#f3-connect-link", { opacity: 0, scaleY: 0 }, { opacity: 1, scaleY: 1, duration: 0.35, ease: "power2.out" }, 2.05);
+          tl.fromTo("#f3-server", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 2.15);
+          tl.fromTo("#f3-eyebrow", { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.4, ease: "power2.out" }, 1.95);
+          tl.fromTo("#f3-headline", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 2.1);
+          tl.fromTo("#f3-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.inOut" }, 2.45);
+          tl.fromTo(".f3-badge", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.1, ease: "back.out(1.3)" }, 2.65);
+          tl.fromTo("#f3-avail", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" }, 3.15);
+          window.__timelines["03-one-scan"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

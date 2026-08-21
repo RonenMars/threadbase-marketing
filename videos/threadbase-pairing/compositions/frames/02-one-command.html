@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Frame 2 — Install, serve, pair</title>
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          font-family: Inter, -apple-system, system-ui, sans-serif;
+          color: #f4f8ff;
+        }
+        #f2-plane {
+          position: absolute;
+          inset: 0;
+          background: #070b11;
+        }
+        #f2-eyebrow {
+          position: absolute;
+          left: 84px;
+          top: 100px;
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 22px;
+          font-weight: 500;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          color: #f08a24;
+        }
+        #f2-term {
+          position: absolute;
+          left: 84px;
+          top: 176px;
+          width: 500px;
+          height: 340px;
+          border: 1px solid #111c2d;
+          border-radius: 10px;
+          background: #0b1320;
+          box-sizing: border-box;
+          padding: 26px 32px;
+        }
+        .f2-line {
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          white-space: nowrap;
+        }
+        .f2-line .dollar {
+          color: #6f7e94;
+        }
+        #f2-l1 {
+          font-size: 16px;
+          font-weight: 500;
+          color: #9fb0c9;
+        }
+        #f2-l2 {
+          font-size: 26px;
+          font-weight: 600;
+          color: #cdd7e8;
+          margin-top: 18px;
+        }
+        #f2-l3 {
+          font-size: 34px;
+          font-weight: 700;
+          color: #f4f8ff;
+          margin-top: 18px;
+        }
+        #f2-caret {
+          display: inline-block;
+          width: 3px;
+          height: 34px;
+          background: #f08a24;
+          vertical-align: -6px;
+          margin-left: 6px;
+        }
+        #f2-qr {
+          position: absolute;
+          left: 640px;
+          top: 176px;
+          width: 340px;
+          height: 340px;
+          border: 1px solid #111c2d;
+          border-radius: 10px;
+          background: #0b1320;
+          display: grid;
+          place-items: center;
+          box-sizing: border-box;
+          padding: 30px;
+        }
+        #f2-qr img {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+        #f2-headline {
+          position: absolute;
+          left: 84px;
+          top: 636px;
+          width: 560px;
+          font-size: 88px;
+          font-weight: 700;
+          line-height: 0.98;
+          letter-spacing: -0.02em;
+          color: #f4f8ff;
+        }
+        #f2-sub {
+          position: absolute;
+          left: 86px;
+          top: 838px;
+          width: 540px;
+          font-size: 30px;
+          font-weight: 400;
+          line-height: 1.35;
+          color: #9fb0c9;
+        }
+      </style>
+
+      <div data-hf-id="hf-o2r0" id="root" data-composition-id="02-one-command" data-width="1080" data-height="1080">
+        <div data-hf-id="hf-o2p1" id="f2-plane"></div>
+        <div data-hf-id="hf-o2eb" id="f2-eyebrow">// on your computer</div>
+        <div data-hf-id="hf-o2tm" id="f2-term">
+          <div data-hf-id="hf-o2l1" class="f2-line" id="f2-l1"><span data-hf-id="hf-o2d1" class="dollar">$</span> <span data-hf-id="hf-o2t1" id="f2-l1text"></span></div>
+          <div data-hf-id="hf-o2l2" class="f2-line" id="f2-l2"><span data-hf-id="hf-o2d2" class="dollar">$</span> <span data-hf-id="hf-o2t2" id="f2-l2text"></span></div>
+          <div data-hf-id="hf-o2l3" class="f2-line" id="f2-l3"><span data-hf-id="hf-o2d3" class="dollar">$</span> <span data-hf-id="hf-o2t3" id="f2-l3text"></span><span data-hf-id="hf-o2cr" id="f2-caret"></span></div>
+        </div>
+        <div data-hf-id="hf-o2qr" id="f2-qr"><img data-hf-id="hf-o2qi" src="assets/pair-qr.svg" alt="Pairing QR code"></div>
+        <div data-hf-id="hf-o2hl" id="f2-headline">you&rsquo;re<br data-hf-id="hf-o2br">almost done.</div>
+        <div data-hf-id="hf-o2sb" id="f2-sub">Install the streamer, start it, pair it. That&rsquo;s the whole computer side.</div>
+      </div>
+
+      <script>
+        window.__timelines = window.__timelines || {};
+        (function () {
+          const tl = gsap.timeline({ paused: true });
+          const l1 = "npm install -g @threadbase-sh/streamer";
+          const l2 = "tb-streamer serve";
+          const l3 = "tb-streamer pair";
+          const t1 = document.getElementById("f2-l1text");
+          const t2 = document.getElementById("f2-l2text");
+          const t3 = document.getElementById("f2-l3text");
+
+          tl.fromTo("#f2-eyebrow", { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0.15);
+          tl.fromTo("#f2-term", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.675, ease: "power3.out" }, 0.3);
+
+          // Each line is a stepped tween over a character index — seek-safe,
+          // no wall-clock or per-frame randomness.
+          const typed1 = { i: 0 };
+          tl.to(typed1, {
+            i: l1.length, duration: 1.35, ease: "none",
+            onUpdate: () => { t1.textContent = l1.slice(0, Math.round(typed1.i)); },
+          }, 0.825);
+
+          const typed2 = { i: 0 };
+          tl.to(typed2, {
+            i: l2.length, duration: 0.75, ease: "none",
+            onUpdate: () => { t2.textContent = l2.slice(0, Math.round(typed2.i)); },
+          }, 2.4);
+
+          const typed3 = { i: 0 };
+          tl.to(typed3, {
+            i: l3.length, duration: 0.75, ease: "none",
+            onUpdate: () => { t3.textContent = l3.slice(0, Math.round(typed3.i)); },
+          }, 3.375);
+
+          tl.fromTo("#f2-caret", { opacity: 1 }, { opacity: 0, duration: 0.42, repeat: 5, yoyo: true, ease: "none" }, 4.275);
+          tl.fromTo("#f2-qr", { opacity: 0, scale: 0.88 }, { opacity: 1, scale: 1, duration: 0.75, ease: "back.out(1.6)" }, 4.575);
+          tl.fromTo("#f2-headline", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.75, ease: "power3.out" }, 5.1);
+          tl.fromTo("#f2-sub", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.675, ease: "power3.out" }, 5.475);
+
+          window.__timelines["02-one-command"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>
