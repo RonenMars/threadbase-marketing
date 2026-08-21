@@ -3,6 +3,8 @@
 Remotion (React → MP4) pipeline for Threadbase marketing/demo videos. Standalone
 Node project — **not** part of the `tb-mobile` Expo app.
 
+Optional AI-assistant tooling this repo declares (plugins, MCP servers, and how to install them for Claude Code or Codex): [docs/agents/tooling.md](docs/agents/tooling.md)
+
 ## Hard boundaries
 
 - **Never import from `tb-mobile`** (or any app repo). This project stands alone.
