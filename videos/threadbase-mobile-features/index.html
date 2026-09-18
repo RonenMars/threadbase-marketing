@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, height=1080">
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js" integrity="sha384-sG0Hv1tP1lZCk9KQmrIbY/XNwi+OY84GQqhMscbnsoBFqAz8KNCil1kvfL3Hbbk2" crossorigin="anonymous"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1080px; overflow: hidden; background: #000; }
+      #root { position: relative; width: 1080px; height: 1080px; overflow: hidden; background: #0A0E14; }
+      .scene { position: absolute; inset: 0; width: 100%; height: 100%; }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-feature-main" id="root" data-composition-id="main" data-start="0" data-duration="18.349" data-width="1080" data-height="1080">
+      <div data-hf-id="hf-feature-terminal" id="el-01-terminal" class="scene" data-composition-id="01-terminal" data-composition-src="compositions/frames/01-terminal.html" data-start="0" data-duration="5.463" data-track-index="1"></div>
+      <div data-hf-id="hf-feature-queue" id="el-02-queue" class="scene" data-composition-id="02-queue" data-composition-src="compositions/frames/02-queue.html" data-start="5.463" data-duration="5.646" data-track-index="1"></div>
+      <div data-hf-id="hf-feature-search" id="el-03-search" class="scene" data-composition-id="03-search" data-composition-src="compositions/frames/03-search.html" data-start="11.109" data-duration="7.240" data-track-index="1"></div>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

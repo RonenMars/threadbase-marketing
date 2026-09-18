@@ -1,0 +1,295 @@
+<template data-composition-id="05-search">
+  <style>
+    @font-face {
+      font-family: "Inter";
+      src: url("assets/fonts/Inter-400.woff2") format("woff2");
+      font-weight: 400;
+      font-display: block;
+    }
+    @font-face {
+      font-family: "JetBrains Mono";
+      src: url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");
+      font-weight: 400;
+      font-display: block;
+    }
+    @font-face {
+      font-family: "JetBrains Mono";
+      src: url("assets/fonts/JetBrainsMono-500.woff2") format("woff2");
+      font-weight: 500;
+      font-display: block;
+    }
+
+    #root {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1080px;
+      overflow: hidden;
+      container-type: size;
+      font-family: "Inter", sans-serif;
+      color: #E6EDF3;
+    }
+
+    /* full-bleed ink ground on its own clip layer */
+    .search-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(120% 80% at 22% 30%, #12161F 0%, #0A0E14 62%);
+    }
+    .search-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(#ffffff08 1px, transparent 1px),
+        linear-gradient(90deg, #ffffff08 1px, transparent 1px);
+      background-size: 72px 72px;
+      opacity: 0.35;
+      mask-image: radial-gradient(120% 90% at 30% 40%, #000 0%, transparent 78%);
+    }
+
+    /* device — seated left of center, sized by height to fit keep-out */
+    .search-device {
+      position: absolute;
+      top: 44px;
+      left: 78px;
+      width: 372px;    /* 372 x 805 keeps 1242:2688 aspect */
+      height: 805px;
+      border-radius: 46px;
+      background: #05070B;
+      padding: 11px;
+      box-shadow:
+        0 1px 3px rgba(10,14,20,0.5),
+        0 30px 70px rgba(0,0,0,0.55);
+      border: 1px solid rgba(230,237,243,0.10);
+    }
+    .search-screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 36px;
+      overflow: hidden;
+      background: #0A0E14;
+    }
+    .search-shot {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+    /* notch */
+    .search-notch {
+      position: absolute;
+      top: 11px;
+      left: 50%;
+      margin-left: -52px;
+      width: 104px;
+      height: 26px;
+      background: #05070B;
+      border-radius: 0 0 16px 16px;
+      z-index: 4;
+    }
+
+    /* coral scan sweep over the results region */
+    .search-scan {
+      position: absolute;
+      left: 11px;
+      right: 11px;
+      height: 120px;
+      pointer-events: none;
+      z-index: 3;
+      background: linear-gradient(180deg,
+        rgba(76,130,247,0) 0%,
+        rgba(76,130,247,0.22) 45%,
+        rgba(76,130,247,0.32) 55%,
+        rgba(76,130,247,0) 100%);
+      border-radius: 12px;
+      mix-blend-mode: screen;
+    }
+
+    /* caret pulse over the search field position */
+    .search-field-glow {
+      position: absolute;
+      z-index: 3;
+      left: 11px;
+      right: 11px;
+      top: 138px;
+      height: 46px;
+      border-radius: 14px;
+      pointer-events: none;
+      box-shadow: 0 0 0 1.5px rgba(76,130,247,0.55), 0 0 26px rgba(76,130,247,0.35);
+    }
+
+    /* right-side annotation stack */
+    .search-notes {
+      position: absolute;
+      left: 500px;
+      right: 60px;
+      top: 150px;
+      z-index: 5;
+      display: flex;
+      flex-direction: column;
+      gap: 26px;
+    }
+    .search-kicker {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 500;
+      font-size: 26px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #E6EDF3;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .search-kicker .spike { color: #4C82F7; }
+
+    .search-note {
+      border: 1px solid rgba(230,237,243,0.12);
+      background: rgba(20,22,24,0.55);
+      border-radius: 12px;
+      padding: 20px 22px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .search-note .dot {
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: #3DDC97;
+      box-shadow: 0 0 12px rgba(61,220,151,0.6);
+      flex: none;
+    }
+    .search-note .lbl {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 500;
+      font-size: 27px;
+      letter-spacing: 0.02em;
+      color: #E6EDF3;
+    }
+    .search-note .sub {
+      font-family: "Inter", sans-serif;
+      font-size: 21px;
+      color: rgba(230,237,243,0.55);
+      margin-top: 3px;
+    }
+    .search-note .txt { display: flex; flex-direction: column; }
+
+    .search-tag {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 500;
+      font-size: 24px;
+      letter-spacing: 0.02em;
+      color: #4C82F7;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .search-tag .n {
+      font-family: "Inter", sans-serif;
+      font-size: 72px;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: #E6EDF3;
+    }
+  </style>
+
+  <div data-hf-id="hf-fnd1" id="root" data-composition-id="05-search" data-start="0" data-duration="7.24" data-width="1080" data-height="1080">
+
+    <div data-hf-id="hf-826f" class="search-bg clip" data-start="0" data-duration="7.24" data-track-index="0"></div>
+
+    <!-- hero device (real screenshot) -->
+    <div data-hf-id="hf-3s65" class="search-device clip" data-start="0" data-duration="7.24" data-track-index="1">
+      <div data-hf-id="hf-rfg5" class="search-screen">
+        <img data-hf-id="hf-1lev" class="search-shot" src="assets/search.png" alt="Threadbase full-text search results for Deploy">
+        <div data-hf-id="hf-oen9" class="search-notch"></div>
+        <div data-hf-id="hf-asv9" class="search-field-glow" id="s5-glow"></div>
+        <div data-hf-id="hf-7fbu" class="search-scan" id="s5-scan"></div>
+      </div>
+    </div>
+
+    <!-- annotation stack -->
+    <div data-hf-id="hf-i4xc" class="search-notes">
+      <div data-hf-id="hf-axca" class="search-kicker clip" id="s5-kicker" data-start="0.3" data-duration="6.94" data-track-index="2">
+        <span data-hf-id="hf-3274" class="spike">✱</span><span data-hf-id="hf-kk04">Full-text search</span>
+      </div>
+
+      <div data-hf-id="hf-224m" class="search-tag clip" id="s5-count" data-start="3.4" data-duration="3.84" data-track-index="3">
+        <span data-hf-id="hf-ubiw" class="n">Every</span><span data-hf-id="hf-t7kq">match</span>
+      </div>
+
+      <div data-hf-id="hf-bu4p" class="search-note clip" id="s5-note1" data-start="3.7" data-duration="3.54" data-track-index="4">
+        <span data-hf-id="hf-9gry" class="dot"></span>
+        <span data-hf-id="hf-vwsn" class="txt">
+          <span data-hf-id="hf-r31h" class="lbl">tb-streamer</span>
+          <span data-hf-id="hf-4uls" class="sub">4 threads · main</span>
+        </span>
+      </div>
+
+      <div data-hf-id="hf-7e1d" class="search-note clip" id="s5-note2" data-start="4.15" data-duration="3.09" data-track-index="5">
+        <span data-hf-id="hf-zcc2" class="dot"></span>
+        <span data-hf-id="hf-dp0n" class="txt">
+          <span data-hf-id="hf-p77g" class="lbl">tb-mobile</span>
+          <span data-hf-id="hf-vopi" class="sub">74 msgs · main</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    (function () {
+      window.__timelines = window.__timelines || {};
+      var tl = gsap.timeline({ paused: true });
+
+      // Scene 1 (0-1.8): device push-slides LEFT into place, holds.
+      tl.fromTo("#root .search-device",
+        { x: 120, autoAlpha: 0 },
+        { x: 0, autoAlpha: 1, duration: 0.75, ease: "power3.out" }, 0);
+
+      tl.fromTo("#s5-kicker",
+        { autoAlpha: 0, y: 14 },
+        { autoAlpha: 1, y: 0, duration: 0.5, ease: "power2.out" }, 0.35);
+
+      // Scene 2 (1.8-3.4): "Full text." — the search field lights up (coral caret glow),
+      // then a coral scan sweeps down the result rows as matches flare.
+      tl.fromTo("#s5-glow",
+        { autoAlpha: 0, scale: 0.96 },
+        { autoAlpha: 1, scale: 1, duration: 0.4, ease: "power2.out" }, 1.8);
+      tl.to("#s5-glow", { autoAlpha: 0.35, duration: 0.5, ease: "sine.inOut" }, 2.3);
+
+      tl.fromTo("#s5-scan",
+        { autoAlpha: 0, y: 190 },
+        { autoAlpha: 1, y: 260, duration: 0.35, ease: "power1.out" }, 2.35);
+      tl.to("#s5-scan",
+        { y: 690, duration: 1.0, ease: "none" }, 2.7);
+      tl.to("#s5-scan", { autoAlpha: 0, duration: 0.35, ease: "power1.in" }, 3.55);
+
+      // Scene 3 (3.4-6.0): "Every session, every server" — annotation rows cascade in.
+      tl.fromTo("#s5-count",
+        { autoAlpha: 0, y: 18 },
+        { autoAlpha: 1, y: 0, duration: 0.5, ease: "power2.out" }, 3.4);
+      tl.fromTo("#s5-note1",
+        { autoAlpha: 0, x: 34 },
+        { autoAlpha: 1, x: 0, duration: 0.5, ease: "power3.out" }, 3.7);
+      tl.fromTo("#s5-note2",
+        { autoAlpha: 0, x: 34 },
+        { autoAlpha: 1, x: 0, duration: 0.5, ease: "power3.out" }, 4.15);
+
+      // green source dots tick on
+      tl.fromTo("#s5-note1 .dot",
+        { scale: 0.2, autoAlpha: 0 },
+        { scale: 1, autoAlpha: 1, duration: 0.35, ease: "back.out(2)" }, 4.0);
+      tl.fromTo("#s5-note2 .dot",
+        { scale: 0.2, autoAlpha: 0 },
+        { scale: 1, autoAlpha: 1, duration: 0.35, ease: "back.out(2)" }, 4.45);
+
+      // settle + hold to 6.74 (no exit — root transition owns it)
+      window.__timelines["05-search"] = tl;
+    })();
+  </script>
+</template>

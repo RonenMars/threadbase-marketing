@@ -1,0 +1,324 @@
+<template data-composition-id="04-queue">
+  <style>
+    @font-face {
+      font-family: "Inter";
+      src: url("assets/fonts/Inter-400.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
+      font-display: block;
+    }
+    @font-face {
+      font-family: "JetBrains Mono";
+      src: url("assets/fonts/JetBrainsMono-400.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
+      font-display: block;
+    }
+
+    #root {
+      width: 1080px;
+      height: 1080px;
+      position: relative;
+      overflow: hidden;
+      container-type: size;
+      font-family: "Inter", sans-serif;
+    }
+
+    /* full-bleed ground on its own clip layer (never on #root) */
+    .queue-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(120% 80% at 50% -10%, #12182400 0%, #0A0E14 70%),
+        #0A0E14;
+    }
+
+    /* ---- phone device ---- */
+    .queue-device {
+      position: absolute;
+      left: 50%;
+      top: 26px;
+      width: 396px;
+      height: 850px;
+      margin-left: -198px;              /* center without CSS transform (GSAP owns transforms) */
+      border-radius: 52px;
+      background: #05070b;
+      padding: 12px;
+      box-shadow:
+        0 1px 3px rgba(10, 14, 20, 0.5),
+        0 30px 80px rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(230, 237, 243, 0.10);
+    }
+    .queue-screen {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      border-radius: 42px;
+      overflow: hidden;
+      background: #0A0E14;
+    }
+    .queue-shot {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* notch */
+    .queue-notch {
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      margin-left: -52px;
+      width: 104px;
+      height: 26px;
+      border-radius: 14px;
+      background: #05070b;
+      z-index: 6;
+    }
+
+    /* ---- queued chip (spring-pops into the thread) ---- */
+    .queue-chip {
+      position: absolute;
+      left: 30px;
+      top: 470px;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 20px 12px 16px;
+      border-radius: 9999px;
+      background: rgba(21, 22, 24, 0.92);
+      border: 1px solid rgba(61, 220, 151, 0.35);
+      box-shadow: 0 1px 3px rgba(10, 14, 20, 0.6), 0 12px 34px rgba(0, 0, 0, 0.45);
+      transform-origin: 20% 50%;
+    }
+    .queue-chip-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #3DDC97;
+      box-shadow: 0 0 0 5px rgba(61, 220, 151, 0.18);
+      flex: 0 0 auto;
+    }
+    .queue-chip-text {
+      font-family: "Inter", sans-serif;
+      font-weight: 400;
+      font-size: 21px;
+      color: #E6EDF3;
+      letter-spacing: -0.005em;
+      white-space: nowrap;
+    }
+
+    /* ---- prompt input bar overlay (bottom of screen) ---- */
+    .queue-inputbar {
+      position: absolute;
+      left: 16px;
+      right: 16px;
+      bottom: 22px;
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 12px 12px 20px;
+      border-radius: 26px;
+      background: #151618;
+      border: 1px solid rgba(230, 237, 243, 0.12);
+    }
+    .queue-inputbar.is-focused {
+      border-color: rgba(76, 130, 247, 0.65);
+      box-shadow: 0 0 0 3px rgba(76, 130, 247, 0.18);
+    }
+    /* the flying prompt clone rides above the bar on send */
+    .queue-flyfield {
+      position: absolute;
+      left: 20px;
+      right: 72px;
+      top: 50%;
+      margin-top: -16px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      overflow: visible;
+    }
+    .queue-field {
+      flex: 1 1 auto;
+      min-width: 0;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+    }
+    .queue-typed {
+      font-family: "JetBrains Mono", monospace;
+      font-weight: 400;
+      font-size: 22px;
+      color: #E6EDF3;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+    .queue-caret {
+      display: inline-block;
+      width: 2.5px;
+      height: 26px;
+      margin-left: 2px;
+      background: #4C82F7;
+      vertical-align: middle;
+    }
+    .queue-send {
+      flex: 0 0 auto;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: #4C82F7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform-origin: 50% 50%;
+      box-shadow: 0 4px 14px rgba(76, 130, 247, 0.35);
+    }
+    .queue-send svg {
+      width: 22px;
+      height: 22px;
+      display: block;
+    }
+
+    /* focus-pulse ring that draws attention to the input bar (scene 1) */
+    .queue-focus {
+      position: absolute;
+      left: 8px;
+      right: 8px;
+      bottom: 14px;
+      height: 78px;
+      border-radius: 30px;
+      border: 1.5px solid rgba(76, 130, 247, 0.55);
+      z-index: 3;
+      opacity: 0;
+      transform-origin: 50% 50%;
+    }
+  </style>
+
+  <div data-hf-id="hf-j3xz" id="root" data-composition-id="04-queue" data-start="0" data-duration="5.646" data-width="1080" data-height="1080">
+    <!-- full-bleed ground -->
+    <div data-hf-id="hf-yn4o" class="queue-bg clip" data-start="0" data-duration="5.646" data-track-index="0"></div>
+
+    <!-- phone device holding the real screenshot -->
+    <div data-hf-id="hf-irrw" class="queue-device clip" data-start="0" data-duration="5.646" data-track-index="1">
+      <div data-hf-id="hf-04ym" class="queue-screen">
+        <img data-hf-id="hf-5izm" class="queue-shot" src="assets/terminal.png" alt="">
+        <div data-hf-id="hf-l9j4" class="queue-notch"></div>
+
+        <!-- queued confirmation chip (spring-pop in scene 3) -->
+        <div data-hf-id="hf-75tu" class="queue-chip" id="queue-chip">
+          <span data-hf-id="hf-wh5f" class="queue-chip-dot"></span>
+          <span data-hf-id="hf-ak8w" class="queue-chip-text">Queued · run the tests again</span>
+        </div>
+
+        <!-- attention pulse on the input region (scene 1) -->
+        <div data-hf-id="hf-hiyi" class="queue-focus" id="queue-focus"></div>
+
+        <!-- prompt input bar -->
+        <div data-hf-id="hf-nygi" class="queue-inputbar" id="queue-inputbar">
+          <div data-hf-id="hf-dzfq" class="queue-field">
+            <span data-hf-id="hf-bhin" class="queue-flyfield" id="queue-flyfield">
+              <span data-hf-id="hf-6omj" class="queue-typed" id="queue-typed"></span><span data-hf-id="hf-estd" class="queue-caret" id="queue-caret"></span>
+            </span>
+          </div>
+          <div data-hf-id="hf-aqby" class="queue-send" id="queue-send">
+            <svg data-hf-id="hf-5l2t" viewBox="0 0 24 24" fill="none">
+              <path data-hf-id="hf-qvjc" d="M12 20V5M12 5L5.5 11.5M12 5L18.5 11.5" stroke="#E6EDF3" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+  <script>
+    (function () {
+      const root = document.querySelector('#root[data-composition-id="04-queue"]');
+      const q = (sel) => root.querySelector(sel);
+
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["04-queue"] = tl;
+
+      const typed = q("#queue-typed");
+      const caret = q("#queue-caret");
+      const PROMPT = "run the tests again";
+
+      // rest states
+      gsap.set(q("#queue-chip"), { opacity: 0, scale: 0.6 });
+      gsap.set(caret, { opacity: 1 });
+      gsap.set(q("#queue-flyfield"), { y: 0, opacity: 1 });
+      typed.textContent = "";
+
+      // Scene 1 (0.0–1.6s): device settles, input bar draws focus, caret blinks.
+      tl.fromTo(q(".queue-device"),
+        { scale: 0.965, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.55, ease: "power2.out" }, 0);
+
+      // subtle push toward the input bar (a slow scale on the whole device reads as a lean-in)
+      tl.to(q(".queue-device"), { scale: 1.02, duration: 1.05, ease: "power1.inOut" }, 0.55);
+
+      // attention pulse ring on the input region
+      tl.fromTo(q("#queue-focus"),
+        { opacity: 0, scale: 0.96 },
+        { opacity: 0.9, scale: 1, duration: 0.4, ease: "power2.out" }, 0.6);
+      tl.to(q("#queue-focus"), { opacity: 0.25, duration: 0.5, ease: "power1.inOut" }, 1.0);
+
+      // caret blink (deterministic on/off keyframes, no repeat)
+      [0.5, 0.9, 1.3].forEach((t) => {
+        tl.to(caret, { opacity: 0, duration: 0.12 }, t);
+        tl.to(caret, { opacity: 1, duration: 0.12 }, t + 0.22);
+      });
+
+      // focus the bar as typing begins
+      tl.add(() => { q("#queue-inputbar").classList.add("is-focused"); }, 1.55);
+
+      // Scene 2 (1.6–3.8s): prompt types character-by-character (JetBrains Mono, soft-type ticks).
+      const TYPE_START = 1.65;
+      const TYPE_END = 3.55;
+      const per = (TYPE_END - TYPE_START) / PROMPT.length;
+      for (let i = 1; i <= PROMPT.length; i++) {
+        const slice = PROMPT.slice(0, i);
+        tl.add(() => { typed.textContent = slice; }, TYPE_START + (i - 1) * per);
+      }
+      // caret holds solid while typing, one blink after the line lands
+      tl.to(caret, { opacity: 0, duration: 0.12 }, 3.62);
+      tl.to(caret, { opacity: 1, duration: 0.12 }, 3.80);
+
+      // Scene 3 (3.8–5.146s): send press (press-release-spring), prompt slides up, queued chip pops.
+      const PRESS_START = 3.95;
+      const PRESS_DUR = 0.12;
+      const RELEASE_START = PRESS_START + PRESS_DUR;
+
+      // press: linear compression
+      tl.to(q("#queue-send"),
+        { scale: 0.9, boxShadow: "0 1px 4px rgba(76,130,247,0.3)", duration: PRESS_DUR, ease: "power1.in" },
+        PRESS_START);
+      // release: spring back
+      tl.to(q("#queue-send"),
+        { scale: 1, boxShadow: "0 4px 14px rgba(76,130,247,0.35)", duration: 0.5, ease: "back.out(2)" },
+        RELEASE_START);
+
+      // caret vanishes as it sends
+      tl.to(caret, { opacity: 0, duration: 0.1 }, RELEASE_START);
+
+      // send-whoosh: the typed prompt slides UP out of the bar and fades
+      tl.to(q("#queue-flyfield"),
+        { y: -70, opacity: 0, duration: 0.4, ease: "power2.in" },
+        RELEASE_START + 0.02);
+
+      // queued chip spring-pops into the thread above
+      tl.to(q("#queue-chip"),
+        { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2.2)" },
+        RELEASE_START + 0.22);
+
+      // climax dwell — chip holds confirmed to the end (~0.5s tail)
+    })();
+  </script>
+</template>

@@ -7,6 +7,7 @@ you want depends on whether the hero is *footage* or *composed frames*.
 |---|---|---|---|
 | **Bookends** (below) | Remotion | A phone screen recording is the video; you want branded chrome around it | 1080×1920 portrait |
 | **[Pairing promo](videos/threadbase-pairing/)** | HyperFrames | The video is composed from captured app screens, with overlay copy carrying the argument | 1080×1080 square |
+| **[Mobile features](videos/threadbase-mobile-features/)** | HyperFrames | The video demonstrates what developers can do after pairing: terminal, queue, and search | 1080×1080 square |
 
 The full-compositor approach — the whole timeline owned by code, no timeline
 editor — was
@@ -107,9 +108,10 @@ chat is a decision the next session never sees.
 
 ### State
 
-The six frames are **wireframes**. Each phone is a labelled placeholder block,
-not yet the real screen — the current render is for judging pacing and reading
-order, not for publishing.
+The pairing promo now uses real captured screens for the handshake and live-hub
+beats. Frame 3 uses the committed scan-to-pair capture; Frames 4 and 5 use the
+handshake and populated-hub captures. Frame 3's real camera view remains a future
+replacement if a physical-device scan recording is produced.
 
 To finish: drop the real screens from `source-screens/` into the phone slots,
 and replace Frame 3's placeholder with the iPhone footage described in
@@ -138,3 +140,16 @@ would always drive and record the app.
 (`#070b11` / `#0b1320` / `#111c2d`), derived independently by capturing
 threadbase.sh. They are **not** wired together: change one and change the other
 by hand, same as the note at the top of `src/brand.ts`.
+
+## Mobile features promo (HyperFrames)
+
+`videos/threadbase-mobile-features/` is the companion feature-demo cut adopted
+from the separate Threadbase Mobile promo project. It deliberately stays separate
+from the pairing ad: pairing answers how to connect, while this cut answers what
+you can do after connecting.
+
+```bash
+cd videos/threadbase-mobile-features
+npm run check
+npm run render
+```

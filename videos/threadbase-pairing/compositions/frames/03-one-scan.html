@@ -34,28 +34,15 @@
           position: absolute;
           inset: 12px;
           overflow: hidden;
-          padding: 24px 22px;
           border-radius: 24px;
-          background:
-            radial-gradient(circle at 80% 18%, rgba(240, 138, 36, 0.18), transparent 30%),
-            linear-gradient(160deg, #152b4a 0%, #0a1220 52%, #0b1320 100%);
-          color: #f4f8ff;
+          background: #070b11;
         }
-        #f3-screen::before {
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 36%);
-          content: "";
-        }
-        .f3-status,
-        .f3-appbar,
-        .f3-screen-kicker,
-        .f3-screen-title,
-        .f3-screen-card,
-        .f3-screen-note,
-        .f3-screen-nav {
-          position: relative;
-          z-index: 1;
+        .f3-capture {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: top center;
         }
         .f3-status {
           display: flex;
@@ -310,17 +297,8 @@
         <div data-hf-id="hf-7w4d" id="f3-plane"></div>
         <div data-hf-id="hf-f3qr" id="f3-qr"><img data-hf-id="hf-f3qi" src="assets/pair-qr.svg" alt="Pairing QR code"></div>
         <div data-hf-id="hf-z08y" id="f3-phone">
-          <div data-hf-id="hf-f3sc" id="f3-screen" role="img" aria-label="Generic Threadbase mobile pairing illustration">
-            <div data-hf-id="hf-f3st" class="f3-status"><span data-hf-id="hf-f3time">9:41</span><span data-hf-id="hf-f3icons" class="f3-status-icons">••• ◉</span></div>
-            <div data-hf-id="hf-f3ab" class="f3-appbar"><span data-hf-id="hf-f3am" class="f3-app-mark"></span><span data-hf-id="hf-f3an">Threadbase</span><span data-hf-id="hf-f3mm" class="f3-menu">•••</span></div>
-            <div data-hf-id="hf-f3sk" class="f3-screen-kicker">PAIRING</div>
-            <div data-hf-id="hf-f3sl" class="f3-screen-title">Ready to connect</div>
-            <div data-hf-id="hf-f3card" class="f3-screen-card">
-              <div data-hf-id="hf-f3art" class="f3-link-art" aria-hidden="true"><span data-hf-id="hf-f3ol" class="f3-orb f3-orb-left"></span><span data-hf-id="hf-f3or" class="f3-orb f3-orb-right"></span><span data-hf-id="hf-f3ln" class="f3-link"></span></div>
-              <div data-hf-id="hf-f3cl" class="f3-card-label">Secure handoff</div>
-            </div>
-            <div data-hf-id="hf-f3sn" class="f3-screen-note">One scan to bring your workspace with you.</div>
-            <div data-hf-id="hf-f3nav" class="f3-screen-nav" aria-hidden="true"><span data-hf-id="hf-f3nd1" class="f3-nav-dot active"></span><span data-hf-id="hf-f3nd2" class="f3-nav-dot"></span><span data-hf-id="hf-f3nd3" class="f3-nav-dot"></span></div>
+          <div data-hf-id="hf-f3sc" id="f3-screen">
+            <img data-hf-id="hf-f3cap" class="f3-capture" src="source-screens/promo-02-03-scan-to-pair.png" alt="Threadbase scan to pair instructions">
           </div>
         </div>
         <div data-hf-id="hf-f3sg" id="f3-scan-gate" class="clip" data-composition-id="camera-scan-gate" data-composition-src="compositions/components/camera-scan-gate.html" data-variable-values='{"scanColor":"#f08a24","targetLabel":"paired","sweepSpeed":0.9}' data-start="1.25" data-duration="2.95" data-track-index="2" data-width="470" data-height="470"></div>
