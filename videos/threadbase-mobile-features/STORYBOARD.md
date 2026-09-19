@@ -13,6 +13,8 @@ music: none
 - Silent-first, with short burned-in claims and real mobile screens.
 - Use the pairing promo's dark brand world, but let the app screenshots carry the proof.
 - Every frame develops through one action and then holds for readability.
+- Optional audio mix: a low-volume tech bed, transition whoosh, typing texture,
+  send confirmation, and search-result ticks. No voiceover is required.
 
 ## Frame 1 — See the full terminal
 

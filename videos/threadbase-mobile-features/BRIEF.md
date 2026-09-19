@@ -30,6 +30,8 @@ three beats remain legible without audio.
 - Show terminal visibility first, prompt queueing second, and searchable history third.
 - Keep one product action per frame and settle each frame before the cut.
 - End on a concise product promise rather than repeating the pairing CTA.
+- Include the local promo's reusable BGM/SFX mix as an optional audio export; the
+	visual cut must remain fully legible and usable muted.
 
 ## Relationship to the pairing promo
 
