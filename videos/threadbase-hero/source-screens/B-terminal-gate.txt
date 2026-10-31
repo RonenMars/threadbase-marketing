@@ -1,0 +1,25 @@
+❯ Run the test suite with npm test and tell me whether the auth callback tests pass
+
+  Running the npm test suite
+  ⎿  $ cd "/private/tmp/claude-501/-Users-ronenmars-dev-ai-tools-tb-marketing-hero-video-videos-thre
+     adbase-pairing/c59a3a51-ccd1-4e3b-9471-32b3417c1db1/scratchpad/demo-repo" && npm test 2>&1 |
+     tail -60
+
+────────────────────────────────────────────────────────────────────────────────────────────────────
+ Bash command
+ Tip: auto mode handles these prompts for you — choose "switch to auto mode" below
+ Run the npm test suite
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+ │ cd "/private/tmp/claude-501/-Users-ronenmars-dev-ai-tools-tb-marketing-hero-video-videos-threadb
+ │ ase-pairing/c59a3a51-ccd1-4e3b-9471-32b3417c1db1/scratchpad/demo-repo" && npm test 2>&1 | tail
+ │ -60
+╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌╌
+ This command requires approval
+
+ Do you want to proceed?
+ ❯ 1. Yes
+   2. Yes, and don’t ask again for: npm test *
+   3. Yes, and switch to auto mode · auto mode handles these prompts for you
+   4. No
+
+ Esc to cancel · Tab to amend

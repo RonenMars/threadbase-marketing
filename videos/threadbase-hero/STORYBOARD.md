@@ -1,13 +1,14 @@
 ---
 format: 1080x1080
-duration: 35s
+duration: 35.3s
 message: "Every coding agent, every machine, one phone — and Threadbase can't read a word of it"
 arc: Demo Loop — hub → gate → approve → next prompt → fresh session → trust → brand (loops to hub)
 audience: developers hearing about Threadbase for the first time, already running Claude Code / Codex / Copilot in a terminal
 mode: collaborative
+music: none
 ---
 
-Seven frames, 39.0s of content, six 0.7s crossfades → **34.8s** on the timeline. Muted. Every
+Seven frames, 39.5s of content, six 0.7s crossfades → **35.3s** on the timeline. Muted. Every
 caption ≤12 words, on screen ≥3.5s, enters ≤0.9s into its frame. Frame 7's last frame == frame 1's
 first frame, so the MP4 loops without a seam. Poster = t=0.
 
@@ -23,10 +24,11 @@ Shot letters (A–G) refer to the approved capture list in `FEATURES.md` / `BRIE
 
 ## Frame 1 — Hub: every agent, every machine
 
-- status: outline
+- status: animated
 - src: compositions/frames/01-hub.html
-- duration: 6s
-- transition_in: cut (loop seam — identical to frame 7's last frame)
+- duration: 5.3s
+- transition_in: cut
+- note: loop seam — identical to frame 7's last frame
 - scene: Hub phone with Claude Code / Codex / Copilot sessions across three machines; headline builds beside it
 - poster: 0s
 - blueprint: device-surface-showcase (static tour) + kinetic-type-beats (hook)
@@ -51,9 +53,9 @@ loop point, so the viewer who watches twice lands back on the product.
 
 ## Frame 2 — The gate: the agent needs you
 
-- status: outline
+- status: animated
 - src: compositions/frames/02-gate.html
-- duration: 6s
+- duration: 5.3s
 - transition_in: crossfade 0.7s
 - scene: Split stage — terminal (left) stops at a permission prompt; phone (right) lights up with the push, Allow / Deny
 - poster: 3.2s
@@ -78,10 +80,11 @@ title carries project and branch in plaintext, which is exactly what the lock sc
 
 ## Frame 3 — Approve from the phone
 
-- status: outline
+- status: animated
 - src: compositions/frames/03-approve.html
-- duration: 6s
-- transition_in: crossfade 0.7s (same split layout — the stage holds, the screens change)
+- duration: 5.3s
+- transition_in: crossfade 0.7s
+- note: same split layout — the stage holds, the screens change
 - scene: Phone opens to the session's permission card; Allow is tapped; the terminal on the left resumes streaming
 - poster: 3.6s
 - blueprint: agent-progress-theater (in-device approval → the receipt is the terminal moving again)
@@ -103,10 +106,11 @@ single-select only); no free-text answer, no multi-select.
 
 ## Frame 4 — Send the next prompt
 
-- status: outline
+- status: animated
 - src: compositions/frames/04-next-prompt.html
-- duration: 5.5s
-- transition_in: crossfade 0.7s (phone pushes to center-right and grows; terminal recedes to a dimmed card behind it)
+- duration: 4.8s
+- transition_in: crossfade 0.7s
+- note: phone pushes to center-right and grows; terminal recedes to a dimmed card behind it
 - scene: The composer types "Now add tests for the callback"; send; the transcript shows Working
 - poster: 3.4s
 - blueprint: prompt-type-submit-generate (type → submit → status theater; the answer is the Working state, not a result)
@@ -128,9 +132,9 @@ queue — the word "queue" does not appear anywhere in the video.
 
 ## Frame 5 — Start a fresh session
 
-- status: outline
+- status: animated
 - src: compositions/frames/05-new-session.html
-- duration: 5s
+- duration: 4.3s
 - transition_in: crossfade 0.7s
 - scene: "+ New session" → folder on Home Mac → agent picker → Codex selected → Start
 - poster: 3.0s
@@ -151,10 +155,11 @@ real evening away from the desk would use them.
 
 ## Frame 6 — One command, one scan, encrypted
 
-- status: outline
+- status: animated
 - src: compositions/frames/06-pair.html
-- duration: 6s
-- transition_in: crossfade 0.7s (back to the split stage: terminal left, phone right)
+- duration: 5.3s
+- transition_in: crossfade 0.7s
+- note: back to the split stage: terminal left, phone right
 - scene: Terminal prints the `serve` banner with its QR; the phone scans it; "Encrypted from this device to this computer"; macOS / Linux / Windows badges
 - poster: 4.0s
 - blueprint: comparison-split (terminal | phone) + titlecard badge row
@@ -176,9 +181,9 @@ on by default (Noise IK, keys in Keychain/Keystore). No relay, no cloud account 
 
 ## Frame 7 — Brand: Threadbase can't read your sessions
 
-- status: outline
+- status: animated
 - src: compositions/frames/07-brand.html
-- duration: 4.5s
+- duration: 5s
 - transition_in: crossfade 0.7s
 - scene: Wordmark + the boundary line + threadbase.sh; then the hub phone returns to its frame-1 position so the loop closes
 - poster: 2.0s
@@ -190,10 +195,10 @@ on by default (Noise IK, keys in Keychain/Keystore). No relay, no cloud account 
 **0–0.7s:** crossfade; the terminal and phone fade out, the atmosphere stays. **0.5s:** wordmark
 `Threadbase` (Inter 700, 96px) fades-up centered; **1.1s:** the line *Threadbase can't read your
 sessions.* (6 words, verbatim from the landing) fades-up below it; **1.6s:** `threadbase.sh` in
-mono, muted. **1.1–4.1s:** hold (3.0s on the line — the brand line is the only caption under 3.5s;
-it is 6 words and reads in ~1.8s; **flag for approval**, or extend the frame to 5s to make it 3.5s).
-**3.3–4.5s (the seam):** wordmark and line fade out (0.6s) while the hub phone slides in from the
-right to its frame-1 position and the `THREADBASE` kicker lands top-left — at t=4.5s the
+mono, muted. **1.1–4.7s:** hold (3.6s on the line; frame extended from 4.5s to 5s at the storyboard review so
+the brand line meets the 3.5s rule).
+**3.8–5.0s (the seam):** wordmark and line fade out (0.6s) while the hub phone slides in from the
+right to its frame-1 position and the `THREADBASE` kicker lands top-left — at t=5.0s the
 composition is pixel-identical to frame 1 at t=0.
 
 Why no "Join the Beta" button: a hero video sits next to the real CTA button on the page; a
@@ -215,8 +220,8 @@ painted button inside a muted video invites a click that does nothing. The URL i
 | f06.headline | One command. One scan. Encrypted end to end. | 8 | 5.1s |
 | f06.command | npx @threadbase-sh/streamer serve | mono, untranslated | 5.3s |
 | f06.badge.macos / linux / windows | macOS / Linux / Windows | — | 2.0s (badges, not a caption) |
-| f07.kicker | THREADBASE | 1 | 4.5s |
-| f07.line | Threadbase can't read your sessions. | 6 | 3.0s ⚠ see frame 7 |
+| f07.kicker | THREADBASE | 1 | 5.0s |
+| f07.line | Threadbase can't read your sessions. | 6 | 3.6s |
 | f07.url | threadbase.sh | — | 2.5s |
 
 RTL / length check: every headline sits in a 2-line box 860px wide at 56px; the longest English
@@ -225,8 +230,7 @@ line (f02, 51 chars) uses ~1.3 lines, leaving room for +40%. Badges and the comm
 
 ## Open points for the review
 
-1. **Frame 7 line hold is 3.0s**, under the 3.5s rule. Options: extend frame 7 to 5.0s (total
-   35.3s) — recommended — or start the seam later.
+1. ~~Frame 7 line hold~~ — resolved: frame 7 is 5.0s, the line holds 3.6s.
 2. **Two captures need a physical iPhone** (B2 lock-screen push, F2 camera scan). Everything else
    I can capture myself from the simulator and a real streamer. If B2 is not available, frame 2
    falls back to the in-app banner on the session list — weaker, says so on screen.

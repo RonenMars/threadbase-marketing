@@ -71,7 +71,7 @@ Device: iPhone 17 Pro frame, dark theme, 9:41, 100% battery, demo project names 
 `tests/callback.spec.ts`), three machines Work Mac / Home Mac / Linux Devbox.
 
 Self-hosted runtime assets (Step 3): `assets/vendor/gsap.min.js` (copied from the pinned
-hyperframes install), `assets/fonts/Inter[wght].woff2`, `assets/fonts/JetBrainsMono[wght].woff2`
+hyperframes install), `assets/fonts/InterVariable.woff2`, `assets/fonts/JetBrainsMono-Variable.woff2`
 (latin + cyrillic subsets, from the Google Fonts repo). **No CDN URL anywhere in the composition**;
 verified in Step 3 by a zero-external-requests check on load.
 
