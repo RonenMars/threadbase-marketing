@@ -1,0 +1,48 @@
+<template>
+  <style>
+@font-face { font-family: Inter; src: url("assets/fonts/InterVariable.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+      @font-face { font-family: "JetBrains Mono"; src: url("assets/fonts/JetBrainsMono-Variable.woff2") format("woff2"); font-weight: 100 800; font-display: block; }
+      #root { position: absolute; inset: 0; width: 1080px; height: 1080px; overflow: hidden; font-family: Inter, sans-serif; color: #F4F7FB; }
+      .kicker { position: absolute; left: 60px; top: 64px; font: 600 22px/1 "JetBrains Mono", monospace; letter-spacing: 0.26em; text-transform: uppercase; color: #63B3FF; }
+      .caption { position: absolute; left: 60px; top: 866px; width: 960px; min-height: 159px; font: 600 46px/1.15 Inter, sans-serif; letter-spacing: -0.01em; color: #F4F7FB; text-align: start; text-wrap: balance; }
+      .phone { position: absolute; width: 317px; height: 690px; border-radius: 52px; background: #0A0F18; overflow: hidden; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 0 1.5px #243A59; }
+      .phone img { position: absolute; inset: 0; width: 317px; height: 690px; display: block; }
+      .chip { position: absolute; display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 18px; border-radius: 999px; background: #0F1A2C; border: 1px solid #243A59; font: 500 20px/1 Inter, sans-serif; color: #F4F7FB; white-space: nowrap; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); }
+      .chip .dot { width: 10px; height: 10px; border-radius: 50%; }
+      .term { position: absolute; background: #0B1220; border: 1px solid #1A2D47; border-radius: 16px; overflow: hidden; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5); }
+      .term-bar { height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 16px; border-bottom: 1px solid #1A2D47; font: 500 14px/1 "JetBrains Mono", monospace; color: #6C809B; }
+      .term-bar i { width: 11px; height: 11px; border-radius: 50%; background: #243A59; display: block; }
+      .term-bar span { margin-left: 8px; }
+      .term-body { padding: 18px 20px; font: 500 17px/1.5 "JetBrains Mono", monospace; color: #C9D6E8; white-space: pre; }
+      .ln { display: block; min-height: 25.5px; }
+      .ln.dim { color: #6C809B; }
+      .ln.acc { color: #63B3FF; }
+      .ln.ok { color: #4CD58A; }
+      .ln.warn { color: #F08A24; }
+      .tap { position: absolute; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; border: 3px solid #63B3FF; box-shadow: 0 0 24px rgba(99, 179, 255, 0.6); opacity: 0; }
+    #f7-wordmark { position: absolute; left: 60px; right: 60px; top: 380px; text-align: center; font: 700 104px/1 Inter, sans-serif; letter-spacing: -0.03em; color: #F4F7FB; }
+    #f7-line { position: absolute; left: 60px; right: 60px; top: 520px; text-align: center; font: 500 40px/1.25 Inter, sans-serif; color: #9FB0C8; text-wrap: balance; }
+    #f7-url { position: absolute; left: 60px; right: 60px; top: 640px; text-align: center; font: 600 30px/1 "JetBrains Mono", monospace; letter-spacing: 0.04em; color: #63B3FF; }
+    #f7-phone { left: 382px; top: 120px; }
+  </style>
+  <div id="root" data-composition-id="07-brand" data-width="1080" data-height="1080" data-duration="5">
+    <div id="f7-wordmark">Threadbase</div>
+    <div id="f7-line" data-i18n="f07.line">Threadbase can't read your sessions.</div>
+    <div id="f7-url" data-i18n="f07.url">threadbase.sh</div>
+    <div class="kicker" id="f7-kicker" data-i18n="f07.kicker">THREADBASE</div>
+    <div class="phone" id="f7-phone" data-layout-allow-overflow><img src="assets/screens/A-hub.png" alt="" /></div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    (function () {
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo("#f7-wordmark", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, 0.5);
+      tl.fromTo("#f7-line", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.65, ease: "power3.out" }, 1.1);
+      tl.fromTo("#f7-url", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 1.6);
+      tl.to("#f7-wordmark, #f7-line, #f7-url", { opacity: 0, duration: 0.5, ease: "power2.inOut" }, 3.8);
+      tl.fromTo("#f7-phone", { y: 1000 }, { y: 0, duration: 0.9, ease: "power3.inOut" }, 3.95);
+      tl.fromTo("#f7-kicker", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, 4.45);
+      window.__timelines["07-brand"] = tl;
+    })();
+  </script>
+</template>

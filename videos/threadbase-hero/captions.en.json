@@ -1,0 +1,22 @@
+{
+  "$schema": "./captions.schema.json",
+  "locale": "en",
+  "dir": "ltr",
+  "f01.kicker": "THREADBASE",
+  "f01.headline": "Every coding agent. Every machine. One phone.",
+  "f01.badge.claude": "Claude Code",
+  "f01.badge.codex": "Codex",
+  "f01.badge.copilot": "GitHub Copilot",
+  "f02.headline": "Your agent hits a question. Your phone knows first.",
+  "f03.headline": "Approve it from anywhere. The agent keeps working.",
+  "f04.headline": "Send the next prompt before you're back.",
+  "f05.headline": "Start a fresh session on any machine.",
+  "f06.headline": "One command. One scan. Encrypted end to end.",
+  "f06.command": "npx @threadbase-sh/streamer serve",
+  "f06.badge.macos": "macOS",
+  "f06.badge.linux": "Linux",
+  "f06.badge.windows": "Windows",
+  "f07.kicker": "THREADBASE",
+  "f07.line": "Threadbase can't read your sessions.",
+  "f07.url": "threadbase.sh"
+}

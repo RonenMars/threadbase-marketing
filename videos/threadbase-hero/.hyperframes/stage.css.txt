@@ -1,0 +1,20 @@
+@font-face { font-family: Inter; src: url("assets/fonts/InterVariable.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+      @font-face { font-family: "JetBrains Mono"; src: url("assets/fonts/JetBrainsMono-Variable.woff2") format("woff2"); font-weight: 100 800; font-display: block; }
+      #root { position: absolute; inset: 0; width: 1080px; height: 1080px; overflow: hidden; font-family: Inter, sans-serif; color: #F4F7FB; }
+      .kicker { position: absolute; left: 60px; top: 64px; font: 600 22px/1 "JetBrains Mono", monospace; letter-spacing: 0.26em; text-transform: uppercase; color: #63B3FF; }
+      .caption { position: absolute; left: 60px; top: 866px; width: 960px; min-height: 159px; font: 600 46px/1.15 Inter, sans-serif; letter-spacing: -0.01em; color: #F4F7FB; text-align: start; text-wrap: balance; }
+      .phone { position: absolute; width: 317px; height: 690px; border-radius: 52px; background: #0A0F18; overflow: hidden; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 0 1.5px #243A59; }
+      .phone img { position: absolute; inset: 0; width: 317px; height: 690px; display: block; }
+      .chip { position: absolute; display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 18px; border-radius: 999px; background: #0F1A2C; border: 1px solid #243A59; font: 500 20px/1 Inter, sans-serif; color: #F4F7FB; white-space: nowrap; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); }
+      .chip .dot { width: 10px; height: 10px; border-radius: 50%; }
+      .term { position: absolute; background: #0B1220; border: 1px solid #1A2D47; border-radius: 16px; overflow: hidden; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5); }
+      .term-bar { height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 16px; border-bottom: 1px solid #1A2D47; font: 500 14px/1 "JetBrains Mono", monospace; color: #6C809B; }
+      .term-bar i { width: 11px; height: 11px; border-radius: 50%; background: #243A59; display: block; }
+      .term-bar span { margin-left: 8px; }
+      .term-body { padding: 18px 20px; font: 500 17px/1.5 "JetBrains Mono", monospace; color: #C9D6E8; white-space: pre; }
+      .ln { display: block; min-height: 25.5px; }
+      .ln.dim { color: #6C809B; }
+      .ln.acc { color: #63B3FF; }
+      .ln.ok { color: #4CD58A; }
+      .ln.warn { color: #F08A24; }
+      .tap { position: absolute; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; border: 3px solid #63B3FF; box-shadow: 0 0 24px rgba(99, 179, 255, 0.6); opacity: 0; }

@@ -1,0 +1,72 @@
+<template>
+  <style>
+@font-face { font-family: Inter; src: url("assets/fonts/InterVariable.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+      @font-face { font-family: "JetBrains Mono"; src: url("assets/fonts/JetBrainsMono-Variable.woff2") format("woff2"); font-weight: 100 800; font-display: block; }
+      #root { position: absolute; inset: 0; width: 1080px; height: 1080px; overflow: hidden; font-family: Inter, sans-serif; color: #F4F7FB; }
+      .kicker { position: absolute; left: 60px; top: 64px; font: 600 22px/1 "JetBrains Mono", monospace; letter-spacing: 0.26em; text-transform: uppercase; color: #63B3FF; }
+      .caption { position: absolute; left: 60px; top: 866px; width: 960px; min-height: 159px; font: 600 46px/1.15 Inter, sans-serif; letter-spacing: -0.01em; color: #F4F7FB; text-align: start; text-wrap: balance; }
+      .phone { position: absolute; width: 317px; height: 690px; border-radius: 52px; background: #0A0F18; overflow: hidden; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 0 1.5px #243A59; }
+      .phone img { position: absolute; inset: 0; width: 317px; height: 690px; display: block; }
+      .chip { position: absolute; display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 18px; border-radius: 999px; background: #0F1A2C; border: 1px solid #243A59; font: 500 20px/1 Inter, sans-serif; color: #F4F7FB; white-space: nowrap; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); }
+      .chip .dot { width: 10px; height: 10px; border-radius: 50%; }
+      .term { position: absolute; background: #0B1220; border: 1px solid #1A2D47; border-radius: 16px; overflow: hidden; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5); }
+      .term-bar { height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 16px; border-bottom: 1px solid #1A2D47; font: 500 14px/1 "JetBrains Mono", monospace; color: #6C809B; }
+      .term-bar i { width: 11px; height: 11px; border-radius: 50%; background: #243A59; display: block; }
+      .term-bar span { margin-left: 8px; }
+      .term-body { padding: 18px 20px; font: 500 17px/1.5 "JetBrains Mono", monospace; color: #C9D6E8; white-space: pre; }
+      .ln { display: block; min-height: 25.5px; }
+      .ln.dim { color: #6C809B; }
+      .ln.acc { color: #63B3FF; }
+      .ln.ok { color: #4CD58A; }
+      .ln.warn { color: #F08A24; }
+      .tap { position: absolute; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; border: 3px solid #63B3FF; box-shadow: 0 0 24px rgba(99, 179, 255, 0.6); opacity: 0; }
+    #f6-term { left: 48px; top: 120px; width: 600px; height: 690px; }
+    #f6-cmd { display: inline-block; }
+    #f6-qr { display: block; font: 500 13px/1.1 "JetBrains Mono", monospace; color: #F4F7FB; margin-top: 6px; }
+    .qr-ln { display: block; white-space: pre; }
+    #f6-phone { left: 700px; top: 120px; background: #05080D; }
+    #f6-finder { position: absolute; left: 44px; right: 44px; top: 230px; height: 230px; }
+    #f6-finder i { position: absolute; width: 40px; height: 40px; border: 4px solid #63B3FF; display: block; }
+    #f6-finder .tl { left: 0; top: 0; border-right: 0; border-bottom: 0; border-radius: 10px 0 0 0; }
+    #f6-finder .tr { right: 0; top: 0; border-left: 0; border-bottom: 0; border-radius: 0 10px 0 0; }
+    #f6-finder .bl { left: 0; bottom: 0; border-right: 0; border-top: 0; border-radius: 0 0 0 10px; }
+    #f6-finder .br { right: 0; bottom: 0; border-left: 0; border-top: 0; border-radius: 0 0 10px 0; }
+    #f6-scan { position: absolute; left: 6px; right: 6px; top: 0; height: 3px; background: linear-gradient(90deg, transparent, #63B3FF, transparent); box-shadow: 0 0 18px #63B3FF; }
+    #f6-hint { position: absolute; left: 0; right: 0; top: 500px; text-align: center; font: 500 15px/1.3 Inter, sans-serif; color: #9FB0C8; }
+    #f6-badges { position: absolute; left: 48px; top: 826px; display: flex; gap: 12px; }
+    #f6-badges .chip { position: static; height: 36px; padding: 0 14px; font-size: 17px; }
+    #f6-badges .dot { background: #63B3FF; }
+  </style>
+  <div id="root" data-composition-id="06-pair" data-width="1080" data-height="1080" data-duration="6">
+    <div class="term" id="f6-term">
+      <div class="term-bar"><i></i><i></i><i></i><span>zsh — work-mac</span></div>
+      <div class="term-body"><span class="ln acc">❯ <span id="f6-cmd" data-i18n="f06.command">npx @threadbase-sh/streamer serve</span></span><div id="f6-out"><span class="ln dim">Streamer server listening on port 8766</span><span class="ln dim">Providers: claude-code · codex-cli · copilot</span><span id="f6-qr"><span class="qr-ln">╔═════════════════════════════════════════════════════════════╗</span><span class="qr-ln">║ Threadbase Streamer — server address                        ║</span><span class="qr-ln">║ http://192.168.68.125:8766                                  ║</span><span class="qr-ln">║ ▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄         ║</span><span class="qr-ln">║ █ ▄▄▄▄▄ █▄▄▀█▄▄  █ █▀█▀██▄▄█▀▄█ ▄ ▀█  █▀▀ █ ▄▄▄▄▄ █         ║</span><span class="qr-ln">║ █ █   █ █ ▄▀▄███ ▄▄▀▄█  █ █▀▀██ █▄▄▄█ ▄█ ▄█ █   █ █         ║</span><span class="qr-ln">║ █ █▄▄▄█ █▄▀▄▀█  ▄▄▀█ ▀▀ ▄▄▄   ▄▀██▀█ ▄▄▀███ █▄▄▄█ █         ║</span><span class="qr-ln">║ █▄▄▄▄▄▄▄█▄▀ ▀ ▀ ▀ █▄▀▄▀ █▄█ ▀ █▄█▄▀ ▀▄▀▄▀ █▄▄▄▄▄▄▄█         ║</span><span class="qr-ln">║ █▄ ▄ █▀▄▀▄▀███ ▀██▀█ ▄▄ ▄  ▄█▄▀ ▀█▄█▄█▀█ █▄▀█ ▄▄▀▄█         ║</span><span class="qr-ln">║ █ ▄▄▄▄█▄▄▄████ ▀█▀█ █▄▄ ▀▀ █ █▀ ▄ █▀█▄▄ ▄▄▀    ▀▀██         ║</span><span class="qr-ln">║ █▄██▄▄█▄▀▄▄▀  ▄ ██ █▄▀▀▄ ▄▀ ▄▀▀███ ▄   ▀ ▄▄█▀█▄   █         ║</span><span class="qr-ln">║ █▀████▄▄▄▄█▀  ▀█ ▄▀ ██▀█▀█ █▄ ▄▄▀▄█ █▀▄▄▀█▄▄▀ █▄▄██         ║</span><span class="qr-ln">║ █▄ ▄██▀▄▄  ▀▀█  ▄  ▀ █   ██▄▀▀▄▄ ▄▀▀▀▀▄▄▀ ██▀▄▄ ▄▀█         ║</span><span class="qr-ln">║ ████ ▀ ▄▀█ █▀▄▀▀█▀█▄▄  ██ ▀▄ ▀ ██▄ █▄ ██▄█ █▄█▀█  █         ║</span><span class="qr-ln">║ ██ ▄  ▀▄█▄▄    ██ ▀▀ ▀█▀ ▀▀██ ▄▀▄█▀█▀▀ █▄█▀▀▄▀▀█ ██         ║</span><span class="qr-ln">║ █▄█ █ ▄▄▄ █▀▄  ▄▀▄▀▀█▀▀ ▄▄▄  ▀█▄██ ▄██ ▀▄ ▄▄▄ █▀███         ║</span><span class="qr-ln">║ █▀ █  █▄█  ▀▀ ▄██▄  ▄ ▄ █▄█ █▀█▄▄█▄▄    █ █▄█ ▀▄▀▀█         ║</span><span class="qr-ln">║ █▀▀▀▄ ▄▄ ▄▄▄▀ █  █▄▄▄▄   ▄▄▄▄ ▄    █▄█ ▄▄ ▄▄▄ █▄▀▀█         ║</span><span class="qr-ln">║ █▄ ▀▀▄ ▄█ ▄▀▀█ █▄▀█▄ ▄██▀█▄▀█▀▄▄▀ ▄▀ ██▄▀ ▄▀ █▀▄▄▀█         ║</span><span class="qr-ln">║ ██  ▀▄█▄▄  █▄  ▀███▄▄▀█▀▀ ▄█ ▄▄█▄█▀▄█▄▄▄  █ ▄ ██ ▄█         ║</span><span class="qr-ln">║ █▄▄█ █ ▄█ █▀▄ █▀ █▄██▄▀ ▄ ▀▄    █▀█▄ █▄██▀▀▀█▄ █ ██         ║</span><span class="qr-ln">║ ██▀▀█▀█▄ ▄█  ▀█▄▄▀ █  █▀  ▄▄▀█▀▄█ ▄██▄▄█ ▄█▀▄▄▀ ▄██         ║</span><span class="qr-ln">║ ██▀▄▄█▀▄██▄▀█ ▀▀ ▀█▄▀██▀▄▄▀▄ █ ▄▀▀██▄ ▀▀ ▀▄▄▄ ▄▄▄ █         ║</span><span class="qr-ln">║ ██ ▀▀█▄▄   ▄▀▄███▀▄█  ▄██▄█▀▀ ▀  █▄███▀▄██▀██▀ ▄ ▀█         ║</span><span class="qr-ln">║ █▄▄▄███▄▄ ▀██▄█ ▄ █▀ █  ▄▄▄ ▄█ █ ▄▀▀█████ ▄▄▄ ▄ ▀▀█         ║</span><span class="qr-ln">║ █ ▄▄▄▄▄ ██▀   ▄▄▀█ ▀▀   █▄█ ▄▄█▄ █▄▄█ ▄ █ █▄█ ▀█▀▄█         ║</span><span class="qr-ln">║ █ █   █ █▀▄ ▄▀█▄ ▄▄ ██ ▄▄▄▄▄▄ ▄▀▄▀▀█▀▀▄█▀ ▄▄▄ ▄██▄█         ║</span><span class="qr-ln">║ █ █▄▄▄█ █ █▄██▀▄▄▀▄▀ ▄▄█▀███▀█▀▄ ██▄▀▀███▀▀█▄ ▄ ▄▄█         ║</span><span class="qr-ln">║ █▄▄▄▄▄▄▄█▄██▄███▄▄▄▄█▄██▄▄▄▄███▄▄████▄██▄█▄████▄▄▄█         ║</span><span class="qr-ln">║ Scan to pair a mobile client (expires 7:54:10 PM)           ║</span><span class="qr-ln">║ Identity code                                               ║</span><span class="qr-ln">║ 95be 413a c600 64f8 9009 c140 9c41 3994                     ║</span><span class="qr-ln">║ This should match the code your phone shows after you scan. ║</span><span class="qr-ln">╚═════════════════════════════════════════════════════════════╝</span></span></div></div>
+    </div>
+    <div class="phone" id="f6-phone">
+      <div id="f6-finder"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i><div id="f6-scan"></div></div>
+      <div id="f6-hint" data-layout-allow-occlusion>Point the camera at the QR code<br />on your computer</div>
+      <img id="f6-encrypted" src="assets/screens/F-encrypted.png" alt="" />
+    </div>
+    <div id="f6-badges">
+      <div class="chip"><span class="dot"></span><span data-i18n="f06.badge.macos">macOS</span></div>
+      <div class="chip"><span class="dot"></span><span data-i18n="f06.badge.linux">Linux</span></div>
+      <div class="chip"><span class="dot"></span><span data-i18n="f06.badge.windows">Windows</span></div>
+    </div>
+    <div class="caption" id="f6-headline" data-i18n="f06.headline">One command. One scan. Encrypted end to end.</div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    (function () {
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo("#f6-cmd", { clipPath: "inset(0 100% 0 0)" }, { clipPath: "inset(0 0% 0 0)", duration: 0.9, ease: "steps(33)" }, 0.7);
+      tl.fromTo("#f6-out > *", { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", stagger: 0.25 }, 1.7);
+      tl.fromTo("#f6-headline", { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.65, ease: "power3.out" }, 0.5);
+      tl.fromTo("#f6-phone", { opacity: 0, x: 24 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, 2.6);
+      tl.fromTo("#f6-scan", { y: 0 }, { y: 226, duration: 0.7, ease: "sine.inOut" }, 2.8);
+      tl.fromTo("#f6-encrypted", { opacity: 0 }, { opacity: 0, duration: 0.01 }, 0);
+      tl.fromTo("#f6-encrypted", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.inOut" }, 3.5);
+      tl.fromTo("#f6-badges .chip", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.45, ease: "back.out(1.6)", stagger: 0.3 }, 4.0);
+      window.__timelines["06-pair"] = tl;
+    })();
+  </script>
+</template>

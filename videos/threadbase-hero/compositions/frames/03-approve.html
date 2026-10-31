@@ -1,0 +1,49 @@
+<template>
+  <style>
+@font-face { font-family: Inter; src: url("assets/fonts/InterVariable.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+      @font-face { font-family: "JetBrains Mono"; src: url("assets/fonts/JetBrainsMono-Variable.woff2") format("woff2"); font-weight: 100 800; font-display: block; }
+      #root { position: absolute; inset: 0; width: 1080px; height: 1080px; overflow: hidden; font-family: Inter, sans-serif; color: #F4F7FB; }
+      .kicker { position: absolute; left: 60px; top: 64px; font: 600 22px/1 "JetBrains Mono", monospace; letter-spacing: 0.26em; text-transform: uppercase; color: #63B3FF; }
+      .caption { position: absolute; left: 60px; top: 866px; width: 960px; min-height: 159px; font: 600 46px/1.15 Inter, sans-serif; letter-spacing: -0.01em; color: #F4F7FB; text-align: start; text-wrap: balance; }
+      .phone { position: absolute; width: 317px; height: 690px; border-radius: 52px; background: #0A0F18; overflow: hidden; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 0 1.5px #243A59; }
+      .phone img { position: absolute; inset: 0; width: 317px; height: 690px; display: block; }
+      .chip { position: absolute; display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 18px; border-radius: 999px; background: #0F1A2C; border: 1px solid #243A59; font: 500 20px/1 Inter, sans-serif; color: #F4F7FB; white-space: nowrap; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); }
+      .chip .dot { width: 10px; height: 10px; border-radius: 50%; }
+      .term { position: absolute; background: #0B1220; border: 1px solid #1A2D47; border-radius: 16px; overflow: hidden; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5); }
+      .term-bar { height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 16px; border-bottom: 1px solid #1A2D47; font: 500 14px/1 "JetBrains Mono", monospace; color: #6C809B; }
+      .term-bar i { width: 11px; height: 11px; border-radius: 50%; background: #243A59; display: block; }
+      .term-bar span { margin-left: 8px; }
+      .term-body { padding: 18px 20px; font: 500 17px/1.5 "JetBrains Mono", monospace; color: #C9D6E8; white-space: pre; }
+      .ln { display: block; min-height: 25.5px; }
+      .ln.dim { color: #6C809B; }
+      .ln.acc { color: #63B3FF; }
+      .ln.ok { color: #4CD58A; }
+      .ln.warn { color: #F08A24; }
+      .tap { position: absolute; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; border: 3px solid #63B3FF; box-shadow: 0 0 24px rgba(99, 179, 255, 0.6); opacity: 0; }
+    #f3-phone { left: 96px; top: 120px; }
+    #f3-term { left: 460px; top: 120px; width: 572px; height: 690px; }
+    #f3-tap { left: 136px; top: 615px; }
+  </style>
+  <div id="root" data-composition-id="03-approve" data-width="1080" data-height="1080" data-duration="6">
+    <div class="phone" id="f3-phone"><img src="assets/screens/C-permission-card.png" alt="" /><img id="f3-resumed" src="assets/screens/C-resumed.png" alt="" /></div>
+    <div class="tap" id="f3-tap"></div>
+    <div class="term" id="f3-term">
+      <div class="term-bar"><i></i><i></i><i></i><span>claude — ~/code/acme-api</span></div>
+      <div class="term-body"><div id="f3-gate"><span class="ln acc"> Bash command</span><span class="ln"> Run the npm test suite</span><span class="ln dim"> │ npm test 2>&amp;1 | tail -60</span><span class="ln"> </span><span class="ln"> Do you want to proceed?</span><span class="ln acc"> ❯ 1. Yes</span><span class="ln">   2. Yes, and don't ask again for: npm test *</span><span class="ln">   3. Yes, and switch to auto mode</span><span class="ln">   4. No</span><span class="ln"> </span></div><div id="f3-resume"><span class="ln dim">  Ran 1 shell command</span><span class="ln ok">  ✔ auth callback exchanges the code for a session</span><span class="ln ok">  ✔ auth callback rejects a reused state</span><span class="ln dim">  ℹ tests 2 · pass 2 · fail 0</span><span class="ln"> </span><span class="ln">⏺ npm test passes: 2 tests pass, 0 fail.</span></div></div>
+    </div>
+    <div class="caption" id="f3-headline" data-i18n="f03.headline">Approve it from anywhere. The agent keeps working.</div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    (function () {
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo("#f3-resumed", { opacity: 0 }, { opacity: 0 , duration: 0.01 }, 0);
+      tl.fromTo("#f3-headline", { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.65, ease: "power3.out" }, 0.6);
+      tl.fromTo("#f3-tap", { opacity: 0.9, scale: 0.5 }, { opacity: 0, scale: 1.5, duration: 0.5, ease: "power2.out" }, 1.4);
+      tl.fromTo("#f3-resumed", { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.inOut" }, 1.6);
+      tl.fromTo("#f3-gate", { opacity: 0.85 }, { opacity: 0.35, duration: 0.5, ease: "power2.out" }, 2.2);
+      tl.fromTo("#f3-resume .ln", { opacity: 0, y: 6 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out", stagger: 0.18 }, 2.3);
+      window.__timelines["03-approve"] = tl;
+    })();
+  </script>
+</template>

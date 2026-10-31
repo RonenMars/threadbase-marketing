@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, height=1080">
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1080px;
+        overflow: hidden;
+        background: #000;
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1080px;
+        overflow: hidden;
+        background: #070B11;
+        background-color: #070B11;
+        background-image:
+          radial-gradient(520px 520px at 12% 8%, rgba(99, 179, 255, 0.16), transparent 70%),
+          radial-gradient(460px 460px at 92% 6%, rgba(240, 138, 36, 0.12), transparent 70%),
+          linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+        background-size: auto, auto, 48px 48px, 48px 48px;
+      }
+      .scene {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div data-hf-id="hf-ury0" id="root" data-composition-id="main" data-start="0" data-duration="35.3" data-width="1080" data-height="1080">
+      <div data-hf-id="hf-8uu0" id="el-01-hub" class="scene" data-composition-id="01-hub" data-composition-src="compositions/frames/01-hub.html" data-start="0" data-duration="6" data-track-index="0"></div>
+
+      <div data-hf-id="hf-lx32" id="el-02-gate" class="scene" data-composition-id="02-gate" data-composition-src="compositions/frames/02-gate.html" data-start="5.3" data-duration="6" data-track-index="1"></div>
+
+      <div data-hf-id="hf-ixo9" id="el-03-approve" class="scene" data-composition-id="03-approve" data-composition-src="compositions/frames/03-approve.html" data-start="10.6" data-duration="6" data-track-index="0"></div>
+
+      <div data-hf-id="hf-dkkm" id="el-04-next-prompt" class="scene" data-composition-id="04-next-prompt" data-composition-src="compositions/frames/04-next-prompt.html" data-start="15.9" data-duration="5.5" data-track-index="1"></div>
+
+      <div data-hf-id="hf-fele" id="el-05-new-session" class="scene" data-composition-id="05-new-session" data-composition-src="compositions/frames/05-new-session.html" data-start="20.7" data-duration="5" data-track-index="0"></div>
+
+      <div data-hf-id="hf-mxr6" id="el-06-pair" class="scene" data-composition-id="06-pair" data-composition-src="compositions/frames/06-pair.html" data-start="25" data-duration="6" data-track-index="1"></div>
+
+      <div data-hf-id="hf-8aid" id="el-07-brand" class="scene" data-composition-id="07-brand" data-composition-src="compositions/frames/07-brand.html" data-start="30.3" data-duration="5" data-track-index="0"></div>
+
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+      // ── frame transitions (injected by transitions.mjs) ──
+      (function () { var tl = window.__timelines["main"];
+        tl.to("#el-01-hub", { opacity: 0, duration: 0.7, ease: "power2.inOut" }, 5.3);
+        tl.fromTo("#el-02-gate", { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power2.inOut" }, 5.3);
+        tl.to("#el-02-gate", { opacity: 0, duration: 0.7, ease: "power2.inOut" }, 10.6);
+        tl.fromTo("#el-03-approve", { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power2.inOut" }, 10.6);
+        tl.to("#el-03-approve", { opacity: 0, duration: 0.7, ease: "power2.inOut" }, 15.9);
+        tl.fromTo("#el-04-next-prompt", { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power2.inOut" }, 15.9);
+        tl.to("#el-04-next-prompt", { opacity: 0, duration: 0.7, ease: "power2.inOut" }, 20.7);
+        tl.fromTo("#el-05-new-session", { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power2.inOut" }, 20.7);
+        tl.to("#el-05-new-session", { opacity: 0, duration: 0.7, ease: "power2.inOut" }, 25);
+        tl.fromTo("#el-06-pair", { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power2.inOut" }, 25);
+        tl.to("#el-06-pair", { opacity: 0, duration: 0.7, ease: "power2.inOut" }, 30.3);
+        tl.fromTo("#el-07-brand", { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power2.inOut" }, 30.3);
+        tl.to({}, { duration: 35.3 }, 0); // full-span anchor — main.duration() == composition total (Studio master duration)
+      })();
+    </script>
+  </body>
+</html>
