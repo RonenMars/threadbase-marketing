@@ -30,10 +30,10 @@ npm run render -- --quality high --output renders/reel.mp4
 length (drawn 0s/19s, hero 19s/35.3s, pairing 54.3s/26.7s):
 
 ```bash
-ffmpeg -ss 19 -t 35.3 -i renders/reel.mp4 -c:v libx264 -crf 18 renders/threadbase-hero.mp4
+ffmpeg -ss 19 -t 35.3 -i renders/reel.mp4 -c:v libx264 -crf 18 renders/threadbase-hero/video.mp4
 ```
 
-Renders are gitignored.
+Every render lives under the root `renders/`, one folder per video (`renders/<video>/`), and is gitignored.
 
 A video rebuilt from its storyboard (`compositions/<video>/scripts/assemble.sh`)
 comes out as a standalone page and is turned back into a template by

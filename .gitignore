@@ -9,7 +9,6 @@ renders/
 snapshots/
 .thumbnails/
 compositions/*/capture/
-compositions/*/renders/
 compositions/*/snapshots/
 compositions/*/.thumbnails/
 compositions/*/source-footage/*
