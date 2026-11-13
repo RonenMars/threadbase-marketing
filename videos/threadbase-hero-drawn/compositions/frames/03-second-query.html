@@ -1,0 +1,72 @@
+<template>
+  <style>
+    @font-face { font-family: Inter; src: url("assets/fonts/InterVariable.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+    #root { position: absolute; inset: 0; width: 1080px; height: 1080px; overflow: hidden; font-family: Inter, sans-serif; color: #F4F7FB; }
+    .ov { position: absolute; left: 60px; top: 64px; width: 960px; font: 700 104px/0.96 Inter, sans-serif; letter-spacing: -0.025em; text-wrap: balance; }
+    .sub { margin-top: 20px; font: 600 52px/1.15 Inter, sans-serif; letter-spacing: -0.01em; color: #9FB0C8; text-wrap: balance; }
+    .field { position: absolute; inset: 0; }
+    .field span { position: absolute; font: 500 30px/1 Inter, sans-serif; color: #F4F7FB; opacity: 0.07; white-space: nowrap; }
+    #f3-cam { position: absolute; inset: 0; }
+    .search { position: absolute; left: 60px; top: 380px; width: 960px; height: 112px; box-sizing: border-box; display: flex; align-items: center; gap: 22px; padding: 0 32px; background: #0B1220; border: 1.5px solid #243A59; border-radius: 56px; }
+    .search svg { flex: none; }
+    .q { font: 500 44px/1 Inter, sans-serif; letter-spacing: -0.01em; color: #F4F7FB; white-space: nowrap; }
+    .q .caret { display: inline-block; width: 3px; height: 50px; margin-left: 4px; vertical-align: -9px; background: #A3C9FF; }
+    .row { position: absolute; left: 60px; top: 640px; width: 960px; height: 160px; box-sizing: border-box; padding: 26px 36px; background: #0F1A2C; border: 1px solid #63B3FF; border-radius: 22px; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35); }
+    .row .t { font: 600 44px/52px Inter, sans-serif; color: #F4F7FB; white-space: nowrap; }
+    .row .m { margin-top: 8px; display: flex; align-items: center; gap: 14px; font: 500 44px/52px Inter, sans-serif; color: #9FB0C8; white-space: nowrap; }
+    .row .m b { font-weight: 600; color: #A3C9FF; }
+    .dot { width: 18px; height: 18px; border-radius: 50%; flex: none; background: #7B5EA7; }
+    .thr { position: absolute; inset: 0; width: 1080px; height: 1080px; overflow: visible; }
+    .thr .h { fill: none; stroke: #63B3FF; stroke-opacity: 0.35; stroke-width: 14; stroke-linecap: round; }
+    .thr .c { fill: none; stroke: #A3C9FF; stroke-width: 3; stroke-linecap: round; }
+  </style>
+  <div data-hf-id="hf-bw5u" id="root" data-composition-id="03-second-query" data-width="1080" data-height="1080" data-duration="2.5">
+    <div data-hf-id="hf-jnzl" class="field" id="f3-field" data-layout-allow-overflow="">
+      <span data-hf-id="hf-vzmw" style="left:600px;top:450px">Bump iOS build number</span>
+      <span data-hf-id="hf-bv74" style="left:30px;top:480px">Fastlane match setup</span>
+      <span data-hf-id="hf-5jul" style="left:380px;top:770px">TestFlight upload stuck</span>
+      <span data-hf-id="hf-4r7d" style="left:40px;top:820px">Signing team mismatch</span>
+      <span data-hf-id="hf-6id1" style="left:640px;top:860px">Archive fails on CI</span>
+      <span data-hf-id="hf-zatv" style="left:160px;top:930px">Push entitlement missing</span>
+      <span data-hf-id="hf-w7jd" style="left:560px;top:990px">App Store screenshots</span>
+    </div>
+    <div data-hf-id="hf-ns8j" id="f3-cam" data-layout-allow-overflow="">
+      <div data-hf-id="hf-dl14" class="search" id="f3-search">
+        <svg data-hf-id="hf-i6s2" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9FB0C8" stroke-width="2.2" stroke-linecap="round"><circle data-hf-id="hf-obyv" cx="10.5" cy="10.5" r="6.5" /><path data-hf-id="hf-1r2t" d="M15.5 15.5 21 21" /></svg>
+        <div data-hf-id="hf-z4fo" class="q" id="f3-q"></div>
+      </div>
+      <svg data-hf-id="hf-gdpk" class="thr" id="f3-thr" viewBox="0 0 1080 1080">
+        <path data-hf-id="hf-d90g" class="h" d="M 880 492 C 880 560 540 550 540 640" />
+        <path data-hf-id="hf-jykr" class="c" d="M 880 492 C 880 560 540 550 540 640" />
+      </svg>
+      <div data-hf-id="hf-c1vc" class="row" id="f3-row"><div data-hf-id="hf-khmu" class="t">iOS build fails: profile expired</div><div data-hf-id="hf-yxwy" class="m"><span data-hf-id="hf-9gry" class="dot"></span>Codex · <b data-hf-id="hf-rhzb" id="f3-repo">demo-ios</b> · <b data-hf-id="hf-bukp" id="f3-date">Sep 14</b></div></div>
+    </div>
+    <div data-hf-id="hf-qbxq" class="ov" id="f3-ov">Months later. Any agent.<div class="sub">Still findable.</div></div>
+  </div>
+  <script>
+    window.__timelines = window.__timelines || {};
+    (function () {
+      var tl = gsap.timeline({ paused: true });
+      var q = "provisioning profile time sensitive";
+      document.querySelector("#f3-q").innerHTML = q.split("").map(function (ch) {
+        return '<span class="ch" style="opacity:0">' + (ch === " " ? "&nbsp;" : ch) + "</span>";
+      }).join("") + '<span class="caret"></span>';
+
+      tl.fromTo("#f3-ov", { opacity: 0, y: 28 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.05);
+      tl.fromTo("#f3-ov .sub", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.2);
+      tl.to("#f3-q .ch", { opacity: 1, duration: 0.01, stagger: 0.022 }, 0.1);
+      tl.fromTo("#f3-field", { y: 20 }, { y: -30, duration: 2.5, ease: "none" }, 0);
+
+      var paths = document.querySelectorAll("#f3-thr path");
+      var len = paths[0].getTotalLength();
+      gsap.set(paths, { strokeDasharray: len, strokeDashoffset: len });
+      tl.to(paths, { strokeDashoffset: 0, duration: 0.45, ease: "power2.inOut" }, 0.9);
+      tl.fromTo("#f3-row", { opacity: 0, y: 80 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out" }, 1.15);
+
+      // Settle on the proof: the repo and the date. Hold from 1.9s.
+      tl.to("#f3-cam", { scale: 1.1, transformOrigin: "540px 690px", duration: 0.6, ease: "expo.out" }, 1.4);
+      tl.to("#f3-search, #f3-field", { opacity: 0.2, duration: 0.4, ease: "power2.out" }, 1.4);
+      window.__timelines["03-second-query"] = tl;
+    })();
+  </script>
+</template>
