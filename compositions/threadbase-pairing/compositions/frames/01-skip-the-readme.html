@@ -7,10 +7,13 @@
   <body>
     <template>
       <style>
+        /* Pinned: the Google Fonts faces this video rendered with standalone; family names are pairing-only so the other videos' Inter never applies. */
+        @font-face { font-family: "Pairing Inter"; src: url("compositions/threadbase-pairing/assets/fonts/Inter-latin-v20.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+        @font-face { font-family: "Pairing JetBrains Mono"; src: url("compositions/threadbase-pairing/assets/fonts/JetBrainsMono-latin-v24.woff2") format("woff2"); font-weight: 100 800; font-display: block; }
         #root {
           position: absolute;
           inset: 0;
-          font-family: Inter, -apple-system, system-ui, sans-serif;
+          font-family: "Pairing Inter", -apple-system, system-ui, sans-serif;
           color: #f4f8ff;
         }
         #s1-plane {

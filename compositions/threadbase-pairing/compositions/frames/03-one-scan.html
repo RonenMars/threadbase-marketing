@@ -7,10 +7,14 @@
   <body>
     <template>
       <style>
+        /* Pinned: the Google Fonts faces this video rendered with standalone; family names are pairing-only so the other videos' Inter never applies. */
+        @font-face { font-family: "Pairing Inter"; src: url("compositions/threadbase-pairing/assets/fonts/Inter-latin-v20.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+        @font-face { font-family: "Pairing JetBrains Mono"; src: url("compositions/threadbase-pairing/assets/fonts/JetBrainsMono-latin-v24.woff2") format("woff2"); font-weight: 100 800; font-display: block; }
+        #f3-scan-gate { --font-body: "Pairing Inter"; --font-display: "Pairing Inter"; }
         #root {
           position: absolute;
           inset: 0;
-          font-family: Inter, -apple-system, system-ui, sans-serif;
+          font-family: "Pairing Inter", -apple-system, system-ui, sans-serif;
           color: #f4f8ff;
         }
         #f3-plane {
@@ -61,7 +65,7 @@
           display: flex;
           justify-content: space-between;
           color: #9fb0c9;
-          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-family: "Pairing JetBrains Mono", ui-monospace, monospace;
           font-size: 15px;
         }
         .f3-status-icons {
@@ -91,7 +95,7 @@
         .f3-screen-kicker {
           margin-top: 72px;
           color: #f08a24;
-          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-family: "Pairing JetBrains Mono", ui-monospace, monospace;
           font-size: 15px;
           letter-spacing: 0.16em;
         }
@@ -151,7 +155,7 @@
         }
         .f3-card-label {
           color: #cdd7e8;
-          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-family: "Pairing JetBrains Mono", ui-monospace, monospace;
           font-size: 14px;
           letter-spacing: 0.12em;
           text-transform: uppercase;
@@ -234,7 +238,7 @@
           position: absolute;
           left: 640px;
           top: 100px;
-          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-family: "Pairing JetBrains Mono", ui-monospace, monospace;
           font-size: 22px;
           font-weight: 500;
           letter-spacing: 0.14em;
