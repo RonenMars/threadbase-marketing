@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1080" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1080px;
+        overflow: hidden;
+        background: #000;
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1080px;
+        overflow: hidden;
+      }
+      .video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="81" data-width="1080" data-height="1080">
+      <div id="video-threadbase-hero-drawn" class="video" data-composition-id="threadbase-hero-drawn" data-composition-src="compositions/threadbase-hero-drawn/index.html" data-start="0" data-duration="19" data-track-index="1"></div>
+
+      <div id="video-threadbase-hero" class="video" data-composition-id="threadbase-hero" data-composition-src="compositions/threadbase-hero/index.html" data-start="19" data-duration="35.3" data-track-index="1"></div>
+
+      <div id="video-threadbase-pairing" class="video" data-composition-id="threadbase-pairing" data-composition-src="compositions/threadbase-pairing/index.html" data-start="54.3" data-duration="26.7" data-track-index="1"></div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

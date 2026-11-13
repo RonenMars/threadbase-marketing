@@ -1,32 +1,25 @@
 node_modules/
-out/
-.remotion/
 
-# HyperFrames projects under videos/ — everything regenerable stays out.
+# One HyperFrames workspace — everything regenerable stays out.
 # capture/ is re-fetched with `hyperframes capture`, snapshots and renders are
 # rebuilt from the compositions, .thumbnails is Studio scratch.
 # source-screens/ IS committed: those are the real captured app screens the
-# video is built from, and tracking them keeps this repo standalone.
-videos/*/capture/
-videos/*/renders/
-videos/*/snapshots/
-videos/*/.thumbnails/
-videos/*/node_modules/
-videos/*/source-footage/*
-!videos/*/source-footage/.gitkeep
+# videos are built from, and tracking them keeps this repo standalone.
+renders/
+snapshots/
+.thumbnails/
+compositions/*/capture/
+compositions/*/renders/
+compositions/*/snapshots/
+compositions/*/.thumbnails/
+compositions/*/source-footage/*
+!compositions/*/source-footage/.gitkeep
 
-# Recordings are large binaries — keep them out of git. Drop your phone capture
-# in public/demo-raw.mov locally; it is measured and composited at render time.
-public/*.mov
-public/*.mp4
-public/*.MOV
-public/*.MP4
-
-# Generated demo-page assets — the MP4 + icon are copied in from a render
-# (see site/README.md). site/index.html is the only source-controlled file.
-site/*.mp4
-site/icon.png
-site/.vercel
+# Recordings and renders are large binaries — keep them out of git.
+*.mov
+*.MOV
+*.mp4
+*.MP4
 
 # Browser-automation verification artifacts.
 .playwright-mcp/
