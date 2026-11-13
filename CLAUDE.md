@@ -9,7 +9,7 @@ Optional AI-assistant tooling this repo declares (plugins, MCP servers, and how 
 
 - **Never import from `tb-mobile`** (or any app repo). This project stands alone;
   app screens and brand values are copied in, never linked.
-- **Recordings and renders are never committed.** `*.mov` / `*.mp4` and every
+- **Recordings and renders are never committed.** `*.mov` / `*.mp4` and the root
   `renders/` folder are gitignored.
 - **No Expo / Metro / React Native deps**, and no build step: the videos are
   plain HTML + GSAP.
