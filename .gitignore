@@ -20,6 +20,7 @@ compositions/*/source-footage/*
 *.mp4
 *.MP4
 !/renders/**
+/renders/reel-60.mp4
 
 # Browser-automation verification artifacts.
 .playwright-mcp/
