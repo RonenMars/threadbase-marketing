@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-11-02T17:27:24.495Z",
+        "reason": "brand face: the shipped hero (videos/threadbase-hero) and its vendored fonts use Inter; the brief extends the existing brand, not replaces it"
+      }
+    ]
+  }
+}
