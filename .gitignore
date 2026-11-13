@@ -1,11 +1,11 @@
 node_modules/
 
 # One HyperFrames workspace — everything regenerable stays out.
-# capture/ is re-fetched with `hyperframes capture`, snapshots and renders are
-# rebuilt from the compositions, .thumbnails is Studio scratch.
+# capture/ is re-fetched with `hyperframes capture`, snapshots are rebuilt
+# from the compositions, .thumbnails is Studio scratch.
 # source-screens/ IS committed: those are the real captured app screens the
 # videos are built from, and tracking them keeps this repo standalone.
-renders/
+# The root renders/ IS committed too: the published videos (see README).
 snapshots/
 .thumbnails/
 compositions/*/capture/
@@ -14,11 +14,12 @@ compositions/*/.thumbnails/
 compositions/*/source-footage/*
 !compositions/*/source-footage/.gitkeep
 
-# Recordings and renders are large binaries — keep them out of git.
+# Recordings are large binaries — keep them out of git (renders/ excepted).
 *.mov
 *.MOV
 *.mp4
 *.MP4
+!/renders/**
 
 # Browser-automation verification artifacts.
 .playwright-mcp/
