@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=886, height=1920" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Preview Inter"; src: url("compositions/threadbase-app-preview/assets/fonts/Inter-latin-v20.woff2") format("woff2"); font-weight: 100 900; font-display: block; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 886px; height: 1920px; overflow: hidden; background: #0d1117; }
+      #root {
+        position: relative;
+        width: 886px;
+        height: 1920px;
+        overflow: hidden;
+        background: #0d1117;
+        font-family: "Preview Inter", -apple-system, system-ui, sans-serif;
+        color: #e6edf3;
+      }
+
+      /* The recordings, status bar already cropped off (scripts/app-preview.sh prep). */
+      .shot {
+        position: absolute;
+        left: 75px;
+        top: 392px;
+        width: 736px;
+        height: 1484px;
+        border-radius: 36px;
+        object-fit: cover;
+        object-position: top center;
+        background: #0d1117;
+        outline: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 32px 80px rgba(0, 0, 0, 0.55);
+      }
+
+      /* Caption band: sits where the status bar would be, so none of it reaches the frame. */
+      .cap {
+        position: absolute;
+        left: 75px;
+        right: 75px;
+        top: 118px;
+        height: 240px;
+      }
+      .cap h1 { font-size: 76px; line-height: 1.04; font-weight: 750; letter-spacing: -0.025em; }
+      .cap p { margin-top: 18px; font-size: 32px; font-weight: 500; color: #8b949e; letter-spacing: -0.005em; }
+      .cap .thread { position: absolute; left: 0; top: -34px; width: 132px; height: 6px; border-radius: 3px; background: #4aa3ff; transform-origin: left center; }
+      .cap .amber { color: #ffa03c; }
+      .cap .blue { color: #4aa3ff; }
+      #cap1 .thread { background: #ffa03c; }
+
+      #end { position: absolute; inset: 0; opacity: 0; background: #0d1117; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 75px; }
+      #end img { width: 248px; height: 248px; border-radius: 56px; box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5); }
+      #end h2 { margin-top: 72px; font-size: 82px; line-height: 1.04; font-weight: 750; letter-spacing: -0.03em; }
+      #end h2 span { color: #4aa3ff; }
+      #end p { margin-top: 56px; font-size: 34px; line-height: 1.35; font-weight: 500; color: #8b949e; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="threadbase-app-preview" data-start="0" data-duration="28.5" data-width="886" data-height="1920" data-fps="30">
+      <!-- Footage: alternating tracks so each clip dissolves in over the one before. -->
+      <video id="c1" class="clip shot" src="compositions/threadbase-app-preview/source-footage/C1-now.mp4" muted playsinline data-start="0" data-duration="6.5" data-media-start="1" data-track-index="1"></video>
+      <video id="c2" class="clip shot" src="compositions/threadbase-app-preview/source-footage/C2-answer.mp4" muted playsinline data-start="6" data-duration="7.5" data-media-start="1" data-track-index="2"></video>
+      <video id="c3" class="clip shot" src="compositions/threadbase-app-preview/source-footage/C3-projects.mp4" muted playsinline data-start="13" data-duration="6.5" data-media-start="1" data-track-index="1"></video>
+      <video id="c4" class="clip shot" src="compositions/threadbase-app-preview/source-footage/C4-search.mp4" muted playsinline data-start="19" data-duration="6.5" data-media-start="1" data-track-index="2"></video>
+
+      <div id="end" class="clip" data-start="25" data-duration="3.5" data-track-index="3">
+        <img src="compositions/threadbase-app-preview/assets/icon.png" alt="Threadbase" />
+        <h2>Pull a thread.<br /><span>Watch it weave.</span></h2>
+        <p>Requires the Threadbase streamer<br />on your computer.</p>
+      </div>
+
+      <!-- Loop: C1 dissolves back in, landing on the exact opening frame at 28.5s. -->
+      <video id="c1loop" class="clip shot" src="compositions/threadbase-app-preview/source-footage/C1-now.mp4" muted playsinline data-start="28" data-duration="0.5" data-media-start="0.5" data-track-index="4"></video>
+
+      <div id="cap1" class="clip cap" data-start="0" data-duration="6.5" data-track-index="5"><div class="thread"></div><h1>Your agent<br /><span class="amber">needs you.</span></h1></div>
+      <div id="cap2" class="clip cap" data-start="6" data-duration="7.5" data-track-index="6"><div class="thread"></div><h1>Answer<br /><span class="blue">from anywhere.</span></h1></div>
+      <div id="cap3" class="clip cap" data-start="13" data-duration="6.5" data-track-index="5"><div class="thread"></div><h1>Every agent.<br /><span class="blue">Every machine.</span></h1><p>Claude Code · Codex · Copilot</p></div>
+      <div id="cap4" class="clip cap" data-start="19" data-duration="6.5" data-track-index="6"><div class="thread"></div><h1>Search every<br /><span class="blue">session you ran.</span></h1></div>
+      <div id="cap1loop" class="clip cap" data-start="28" data-duration="0.5" data-track-index="7"><div class="thread"></div><h1>Your agent<br /><span class="amber">needs you.</span></h1></div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const X = 0.5; // dissolve length: Apple allows dissolves and fades only
+
+      // Each beat after the first dissolves in over the outgoing one.
+      [["#c2", "#cap2", 6], ["#c3", "#cap3", 13], ["#c4", "#cap4", 19]].forEach(([shot, cap, t]) => {
+        tl.fromTo(shot, { opacity: 0 }, { opacity: 1, duration: X, ease: "none" }, t);
+        tl.fromTo(cap, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "none" }, t + 0.2);
+        tl.fromTo(`${cap} .thread`, { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: "power2.out" }, t + 0.2);
+      });
+      // Captions hand off in sequence (out, then in) so two lines never stack.
+      [["#cap1", 6], ["#cap2", 13], ["#cap3", 19], ["#cap4", 25]].forEach(([cap, t]) => {
+        tl.to(cap, { opacity: 0, duration: 0.2, ease: "none" }, t);
+      });
+
+      tl.fromTo("#end", { opacity: 0 }, { opacity: 1, duration: X, ease: "none" }, 25);
+      tl.fromTo("#end img", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "none" }, 25.3);
+      tl.fromTo("#end h2", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "none" }, 25.6);
+      tl.fromTo("#end p", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "none" }, 26.0);
+
+      // Loop back: end frame dissolves out as the opening frame dissolves in.
+      tl.to("#end", { opacity: 0, duration: X, ease: "none" }, 28);
+      tl.fromTo("#c1loop", { opacity: 0 }, { opacity: 1, duration: X, ease: "none" }, 28);
+      tl.fromTo("#cap1loop", { opacity: 0 }, { opacity: 1, duration: X, ease: "none" }, 28);
+
+      window.__timelines["threadbase-app-preview"] = tl;
+    </script>
+  </body>
+</html>

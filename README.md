@@ -9,6 +9,10 @@ videos, all 1080×1080 and silent.
 | [`compositions/threadbase-hero/`](compositions/threadbase-hero/) | `threadbase-hero` | 35.3s | The screenshot hero, every claim in `CLAIMS.md` |
 | [`compositions/threadbase-pairing/`](compositions/threadbase-pairing/) | `threadbase-pairing` | 26.7s | LinkedIn promo: pairing is one command and one scan |
 
+The iOS App Store preview is separate: [`compositions/threadbase-app-preview/`](compositions/threadbase-app-preview/) (`threadbase-app-preview`, 886×1920, 28.5s) is a standalone page, not in the reel, built from four real iPhone screen recordings.
+`scripts/app-preview.sh prep` turns the `.mov` clips in its gitignored `source-footage/` into constant-30fps `.mp4`, cropping the status bar off.
+`scripts/app-preview.sh render` writes `renders/threadbase-app-preview/app-preview-iphone-en.mp4` (H.264 High L4.0, ~10 Mbps, silent stereo AAC).
+
 `index.html` at the root is the master reel (`main`, 81s): it mounts the
 three back to back. Each video's own `index.html` is a `<template>`
 sub-composition, and every path inside it resolves from the repo root
